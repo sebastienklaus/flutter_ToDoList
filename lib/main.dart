@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/screens/all_tasks.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -16,10 +17,12 @@ class TodoList extends StatelessWidget {
     return MaterialApp(
       title: 'Todo List',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'ShadowsIntoLight',
+        primarySwatch: Colors.teal,
+        textTheme: GoogleFonts.robotoTextTheme(
+          Theme.of(context).textTheme,
+        ),
       ),
-      home: const AllTasks(title: 'ToDo List'),
+      home: const AllTasks(title: 'Todo List'),
     );
   }
 }

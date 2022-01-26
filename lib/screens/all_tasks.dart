@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/data/tasks.dart' as data;
+import 'package:todo_list/components/tasks/task_master.dart';
 
 class AllTasks extends StatefulWidget {
-  const AllTasks({Key? key, required this.title}) : super(key: key);//constrcuteur
+  const AllTasks({Key? key, required this.title})
+      : super(key: key); //constrcuteur
 
   final String title;
 
@@ -10,40 +13,29 @@ class AllTasks extends StatefulWidget {
 }
 
 class _AllTasksState extends State<AllTasks> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Hello:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+        body: Center(
+          child: ListView(
+            children: const <Widget>[
+              ListTile(
+                leading: Icon(Icons.map),
+                title: Text('Map'),
+              ),
+              ListTile(
+                leading: Icon(Icons.photo_album),
+                title: Text('Album'),
+              ),
+              ListTile(
+                leading: Icon(Icons.phone),
+                title: Text('Phone'),
+              ),
+            ],
+          ),
+        ));
   }
 }
-
