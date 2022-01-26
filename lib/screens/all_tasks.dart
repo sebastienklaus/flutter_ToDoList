@@ -16,26 +16,15 @@ class _AllTasksState extends State<AllTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Center(
-          child: ListView(
-            children: const <Widget>[
-              ListTile(
-                leading: Icon(Icons.map),
-                title: Text('Map'),
-              ),
-              ListTile(
-                leading: Icon(Icons.photo_album),
-                title: Text('Album'),
-              ),
-              ListTile(
-                leading: Icon(Icons.phone),
-                title: Text('Phone'),
-              ),
-            ],
-          ),
-        ));
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: TaskMaster(dataTasks: data.tasks),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        tooltip: 'Add a task',
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
