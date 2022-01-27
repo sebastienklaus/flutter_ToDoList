@@ -100,7 +100,8 @@ flutter:
 flutter_native_splash:
   color: "#006164"
   image: assets/splashscreen/icon.png
-  # branding_mode: bottom
+  android : true
+  ios : true
   android_gravity: center
 
 #package config for the fluttter app icon
