@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:todo_list/models/task.dart';
 
 List<Task> tasks = [
