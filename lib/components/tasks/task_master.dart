@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/task.dart';
+import 'package:todo_list/components/tasks/task_preview.dart';
 
 class TaskMaster extends StatelessWidget {
   const TaskMaster({Key? key, required this.dataTasks}) : super(key: key);
@@ -16,6 +17,13 @@ class TaskMaster extends StatelessWidget {
             title: Text(dataTasks[index].content),
             subtitle: Text('Created at ${dataTasks[index].createdAt}'),
             trailing: const Icon(Icons.drag_handle_rounded),
+            onTap: () {
+              showModalBottomSheet<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return TaskPreview(task: dataTasks[index]);
+                  });
+            },
           );
         },
       ),
