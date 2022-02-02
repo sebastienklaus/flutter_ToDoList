@@ -8,7 +8,7 @@ class TaskPreview extends StatelessWidget {
   //constrcuteur
 
   final Task task;
-  final Function(Task) giveTaskData;
+  final Function giveTaskData;
 
   @override
   Widget build(BuildContext context) {
