@@ -7,54 +7,14 @@ class TaskPreview extends StatelessWidget {
   final Task task;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Text(
-              task.content,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Row(
-              children: [
-                Text(
-                  'Created at ${task.createdAt}',
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                task.completed
-                    ? const Text(
-                        'Task completed',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      )
-                    : const Text(
-                        'Task in progress',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                        ),
-                      ),
-              ],
-            ),
-          ],
-        ),
-      ),
+    return ListTile(
+      leading: task.completed
+          ? const Icon(Icons.check_box_outline_blank_rounded)
+          : const Icon(Icons.check_box_rounded),
+      title: Text(task.content),
+      subtitle: Text('Created at ${task.createdAt}'),
+      trailing: const Icon(Icons.drag_handle_rounded),
+      onTap: () {},
     );
   }
 }
