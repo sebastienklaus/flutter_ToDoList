@@ -24,17 +24,26 @@ class _AllTasksState extends State<AllTasks> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: _display
-          ? TaskDetails(task: taskDetails)
-          : TaskMaster(
-              dataTasks: data.tasks,
-              giveTaskToAllTasks: (Task newval) {
-                print("newval = ${newval.content}");
-                setState(() {
-                  taskDetails = newval;
-                  _display = true;
-                });
-              }),
+      body: Column(
+        children: <Widget>[
+          Row(
+            children: [
+              _display ? TaskDetails(task: taskDetails) : const Text('none')
+            ],
+          ),
+          Expanded(
+            child: TaskMaster(
+                dataTasks: data.tasks,
+                giveTaskToAllTasks: (Task newval) {
+                  print("newval = ${newval.content}");
+                  setState(() {
+                    taskDetails = newval;
+                    _display = true;
+                  });
+                }),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Add a task',
