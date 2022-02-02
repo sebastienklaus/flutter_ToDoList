@@ -7,8 +7,7 @@ class TaskDetails extends StatelessWidget {
   final Task task;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
+    return Center(
       child: Column(
         children: <Widget>[
           Row(

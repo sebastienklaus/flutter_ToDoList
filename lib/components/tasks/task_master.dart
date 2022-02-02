@@ -4,9 +4,13 @@ import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_preview.dart';
 
 class TaskMaster extends StatelessWidget {
-  const TaskMaster({Key? key, required this.dataTasks}) : super(key: key);
-  //constrcuteur
+  const TaskMaster(
+      {Key? key, required this.dataTasks, required this.giveTaskToAllTasks})
+      : super(key: key); //constrcuteur
+
   final List<Task> dataTasks;
+  final Function giveTaskToAllTasks;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -16,7 +20,8 @@ class TaskMaster extends StatelessWidget {
           return TaskPreview(
             task: dataTasks[index],
             giveTaskData: (Task val) {
-              print(val.content);
+              print("val = ${val.content}");
+              giveTaskToAllTasks(val);
             },
           );
         },
