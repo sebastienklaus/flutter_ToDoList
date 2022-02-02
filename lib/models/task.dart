@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Task extends StatelessWidget {
-  late int id; //id of task
-  late String content; //content of the task
-  late bool completed; //bool if the task is complete or not
-  late DateTime createdAt; //time of creation of task
+  int id; //id of task
+  String content; //content of the task
+  bool completed; //bool if the task is complete or not
+  DateTime createdAt; //time of creation of task
 
   Task(this.id, this.content, this.completed, this.createdAt, {Key? key})
       : super(key: key);
