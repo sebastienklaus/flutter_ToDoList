@@ -1,3 +1,4 @@
+// PARENT OF TASK_PREVIEW
 import 'package:flutter/material.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_preview.dart';
@@ -12,7 +13,12 @@ class TaskMaster extends StatelessWidget {
       child: ListView.builder(
         itemCount: dataTasks.length,
         itemBuilder: (context, index) {
-          return TaskPreview(task: dataTasks[index]);
+          return TaskPreview(
+            task: dataTasks[index],
+            giveTaskData: (Task val) {
+              print(val.content);
+            },
+          );
         },
       ),
     );
