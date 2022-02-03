@@ -7,23 +7,93 @@ class TaskDetails extends StatelessWidget {
   final Task task;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              const Text('Created at'),
-              Text('${task.createdAt}'),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              const Text('Task is done ?'),
-              Text('${task.completed}'),
-            ],
-          ),
-        ],
+    return Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey[300],
+          // border: Border.all(width: 5, color: Colors.grey),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(5),
+        ),
+        margin: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: <Widget>[
+            Column(
+              children: [
+                Row(
+                  children: const <Widget>[
+                    Text(
+                      'Content',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Text(task.content),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Creation date',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('${task.createdAt}'),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Creation date',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Text('${task.createdAt}'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
+      // color: Colors.grey[200],
     );
   }
 }
