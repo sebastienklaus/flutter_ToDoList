@@ -30,10 +30,12 @@ class _AllTasksState extends State<AllTasks> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _display ? TaskDetails(task: taskDetails) : const Text('none')
+                _display
+                    ? TaskDetails(task: taskDetails)
+                    : const Text('Click on a task to display its details !')
               ],
             ),
-            Expanded(
+            Flexible(
               child: TaskMaster(
                   dataTasks: data.tasks,
                   giveTaskToAllTasks: (Task newval) {

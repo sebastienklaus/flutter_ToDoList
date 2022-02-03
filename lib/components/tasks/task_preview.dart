@@ -14,12 +14,16 @@ class TaskPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: task.completed
-          ? const Icon(Icons.check_box_outline_blank_rounded)
-          : const Icon(Icons.check_box_rounded),
-      title: Text(task.content),
-      subtitle: Text('Created at ${task.createdAt}'),
-      enabled: task.completed ? true : false,
-      tileColor: task.completed ? null : Colors.green[100],
+          ? const Icon(Icons.check_box_rounded)
+          : const Icon(Icons.check_box_outline_blank_rounded),
+      title: task.completed
+          ? Text(
+              task.content,
+              style: const TextStyle(decoration: TextDecoration.lineThrough),
+            )
+          : Text(task.content),
+      subtitle: task.completed ? const Text('Done') : const Text('To do'),
+      tileColor: task.completed ? Colors.green[100] : null,
       trailing: const Icon(Icons.drag_handle_rounded),
       onTap: () {
         giveTaskData(task);
