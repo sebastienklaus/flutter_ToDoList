@@ -36,13 +36,13 @@ class TaskDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           const Text(
-            'Content',
+            'Titre de la tâche',
             style: TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           Text(task!.content),
           const Text(
-            'Creation date',
+            'Crée le :',
             style: TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
