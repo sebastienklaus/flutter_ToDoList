@@ -27,7 +27,7 @@ class _AllTasksState extends State<AllTasks> {
         children: <Widget>[
           (selectedTask != null)
               ? TaskDetails(task: selectedTask)
-              : Container(),
+              : Container(), //container when we have nothing to display !
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.center,
           //   children: [
