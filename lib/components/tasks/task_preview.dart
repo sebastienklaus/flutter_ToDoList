@@ -26,6 +26,7 @@ class TaskPreview extends StatelessWidget {
       tileColor: task.completed ? Colors.green[100] : null,
       trailing: const Icon(Icons.drag_handle_rounded),
       onTap: () {
+        //on remonte TaskData vers task_master
         giveTaskData(task);
       },
     );
