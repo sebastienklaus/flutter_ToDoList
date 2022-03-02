@@ -17,6 +17,18 @@ class AllTasks extends StatefulWidget {
 class _AllTasksState extends State<AllTasks> {
   Task? selectedTask;
 
+  Widget _showDetailsWhenTaskIsSelected() {
+    return (selectedTask != null)
+        ? TaskDetails(task: selectedTask, onClose: _closeDetails)
+        : Container(); //container when we have nothing to display !
+  }
+
+  void _closeDetails() {
+    setState(() {
+      selectedTask = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,18 +37,7 @@ class _AllTasksState extends State<AllTasks> {
       ),
       body: Column(
         children: <Widget>[
-          (selectedTask != null)
-              ? TaskDetails(task: selectedTask)
-              : Container(), //container when we have nothing to display !
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     _display ? TaskDetails(task: selectedTask) : Container()
-          //   ], //Container pour ne rien afficher !
-          // ),
-          // const SizedBox(
-          //   height: 100,
-          // ),
+          _showDetailsWhenTaskIsSelected(), //container when we have nothing to display !
           Expanded(
             child: TaskMaster(
                 dataTasks: data.tasks,

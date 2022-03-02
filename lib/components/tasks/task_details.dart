@@ -4,9 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class TaskDetails extends StatelessWidget {
-  const TaskDetails({Key? key, required this.task}) : super(key: key);
+  const TaskDetails({Key? key, required this.task, required this.onClose})
+      : super(key: key);
   //constrcuteur
   final Task? task;
+  final Function onClose;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +47,14 @@ class TaskDetails extends StatelessWidget {
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           Text(newDate),
+          CloseButton(
+            // icon: const Icon(Icons.close),
+            color: Colors.red,
+            onPressed: () {
+              onClose();
+              // print(onClose);
+            },
+          ),
         ],
       ),
     );
