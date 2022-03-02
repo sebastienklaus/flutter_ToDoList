@@ -13,19 +13,19 @@ class TaskMaster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView.builder(
-        itemCount: dataTasks.length,
-        itemBuilder: (context, index) {
-          return TaskPreview(
-            task: dataTasks[index],
-            giveTaskData: (Task val) {
-              print("val = ${val.content}");
-              giveTaskToAllTasks(val);
-            },
-          );
-        },
-      ),
+    return ListView.builder(
+      cacheExtent: 0.0,
+      itemCount: dataTasks.length,
+      itemBuilder: (context, index) {
+        return TaskPreview(
+          task: dataTasks[index],
+          //on récupère giveTaskData de task_preview
+          giveTaskData: (Task val) {
+            //on remonte cette fonction vers all_task
+            giveTaskToAllTasks(val);
+          },
+        );
+      },
     );
   }
 }
