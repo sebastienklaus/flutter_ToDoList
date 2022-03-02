@@ -15,8 +15,7 @@ class AllTasks extends StatefulWidget {
 }
 
 class _AllTasksState extends State<AllTasks> {
-  late Task taskDetails;
-  bool _display = false;
+  Task? selectedTask;
 
   @override
   Widget build(BuildContext context) {
@@ -24,30 +23,31 @@ class _AllTasksState extends State<AllTasks> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _display
-                    ? TaskDetails(task: taskDetails)
-                    : const Text('Click on a task to display its details !')
-              ],
-            ),
-            Flexible(
-              child: TaskMaster(
-                  dataTasks: data.tasks,
-                  giveTaskToAllTasks: (Task newval) {
-                    print("newval = ${newval.content}");
-                    setState(() {
-                      taskDetails = newval;
-                      _display = true;
-                    });
-                  }),
-            ),
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          (selectedTask != null)
+              ? TaskDetails(task: selectedTask)
+              : Container(),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     _display ? TaskDetails(task: selectedTask) : Container()
+          //   ], //Container pour ne rien afficher !
+          // ),
+          // const SizedBox(
+          //   height: 100,
+          // ),
+          Expanded(
+            child: TaskMaster(
+                dataTasks: data.tasks,
+                //on récupère la méthode selectedTask du fichier task_details
+                giveTaskToAllTasks: (Task newval) {
+                  setState(() {
+                    selectedTask = newval;
+                  });
+                }),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
