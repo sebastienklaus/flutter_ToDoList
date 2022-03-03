@@ -3,6 +3,7 @@ import 'package:faker/faker.dart';
 import 'package:todo_list/components/tasks/task_details.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
+import 'package:todo_list/components/tasks/task_form.dart';
 
 class AllTasks extends StatefulWidget {
   const AllTasks({Key? key, required this.title, required this.listTasks})
@@ -23,6 +24,7 @@ class _AllTasksState extends State<AllTasks> {
   void initState() {
     super.initState();
     tasks = widget.listTasks;
+    print('actualise');
   }
 
   Widget _showDetailsWhenTaskIsSelected() {
@@ -37,11 +39,12 @@ class _AllTasksState extends State<AllTasks> {
     });
   }
 
-  void _addTask() {
+  void _addTask(Task newTask) {
     setState(() {
       int index = tasks.length + 1;
-      tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
-          faker.date.dateTime(minYear: 2022, maxYear: 2022)));
+      // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
+      //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
+      tasks.add(newTask);
     });
   }
 
@@ -67,8 +70,12 @@ class _AllTasksState extends State<AllTasks> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _addTask();
+        onPressed: () async {
+          Task result = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const TaskForm()));
+          _addTask(result);
         },
         tooltip: 'Add a task',
         child: const Icon(Icons.add),
