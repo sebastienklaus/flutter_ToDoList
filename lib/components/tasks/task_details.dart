@@ -58,40 +58,5 @@ class TaskDetails extends StatelessWidget {
         ],
       ),
     );
-    // color: Colors.grey[2
   }
 }
-
-// Row(
-//   children: const <Widget>[
-//     Text(
-//       'Content',
-//       style: TextStyle(
-//           fontSize: 20,
-//           color: Colors.black,
-//           fontWeight: FontWeight.bold),
-//     ),
-//   ],
-// ),
-// Row(
-//   children: <Widget>[
-//     Text(task!.content),
-//   ],
-// ),
-// Row(
-//   // mainAxisAlignment: MainAxisAlignment.start,
-//   children: const <Widget>[
-//     Text(
-//       'Creation date',
-//       style: TextStyle(
-//           fontSize: 20,
-//           color: Colors.black,
-//           fontWeight: FontWeight.bold),
-//     ),
-//   ],
-// ),
-// Row(
-//   children: <Widget>[
-//     Text(newDate),
-//   ],
-// ),
