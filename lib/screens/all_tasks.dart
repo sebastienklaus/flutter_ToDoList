@@ -42,9 +42,9 @@ class _AllTasksState extends State<AllTasks> {
   void _addTask(Task newTask) {
     setState(() {
       int index = tasks.length + 1;
+      tasks.add(newTask);
       // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
       //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
-      tasks.add(newTask);
     });
   }
 
