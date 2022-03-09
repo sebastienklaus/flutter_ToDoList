@@ -67,7 +67,6 @@ class TaskDetails extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    print('delete');
                     onRemove();
                   },
                   child: const Text('Delete')),
