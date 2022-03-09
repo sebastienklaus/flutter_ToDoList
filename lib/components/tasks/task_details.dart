@@ -66,7 +66,19 @@ class TaskDetails extends StatelessWidget {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    onRemove();
+                    final snackBar = SnackBar(
+                      content: const Text(
+                          'Êtes-vous sûr de supprimer cette tâche ?'),
+                      duration: const Duration(seconds: 10),
+                      action: SnackBarAction(
+                        label: 'Oui',
+                        onPressed: () {
+                          onRemove();
+                        },
+                      ),
+                    );
+                    // snackBar of question about suppression or not
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
                   child: const Text('Delete')),
               ElevatedButton(
