@@ -11,6 +11,7 @@ class TaskDetails extends StatelessWidget {
       required this.onClose,
       required this.onRemove})
       : super(key: key);
+
   //constrcuteur
   final Task? task;
   final Function onClose;
@@ -25,7 +26,6 @@ class TaskDetails extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[300],
-        // border: Border.all(width: 5, color: Colors.grey),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(1),
@@ -36,7 +36,6 @@ class TaskDetails extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(5),
       ),
-      // margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,11 +53,10 @@ class TaskDetails extends StatelessWidget {
           ),
           Text(newDate),
           CloseButton(
-            // icon: const Icon(Icons.close),
             color: Colors.red,
             onPressed: () {
+              //callback in allTasks (after that, there is a setState ...)
               onClose();
-              // print(onClose);
             },
           ),
           Row(
@@ -73,6 +71,7 @@ class TaskDetails extends StatelessWidget {
                       action: SnackBarAction(
                         label: 'Oui',
                         onPressed: () {
+                          //callback in allTasks (after that, there is a setState ...)
                           onRemove();
                         },
                       ),

@@ -8,11 +8,10 @@ import 'package:todo_list/components/tasks/task_master.dart';
 import 'package:todo_list/components/tasks/task_form.dart';
 
 class AllTasks extends StatefulWidget {
-  const AllTasks({Key? key, required this.title, required this.listTasks})
+  const AllTasks({Key? key, required this.title})
       : super(key: key); //constrcuteur
 
   final String title;
-  final List<Task> listTasks;
 
   @override
   _AllTasksState createState() => _AllTasksState();
@@ -25,7 +24,6 @@ class _AllTasksState extends State<AllTasks> {
   @override
   void initState() {
     super.initState();
-    tasks = widget.listTasks;
   }
 
   //method to add a task
@@ -44,7 +42,8 @@ class _AllTasksState extends State<AllTasks> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Consumer<TasksCollection>(builder: ((context, tasks, child) {
+      body: Consumer<TasksCollection>(
+          builder: ((context, tasksCollection, child) {
         return Column(
           children: <Widget>[
             (selectedTask != null)
@@ -57,7 +56,7 @@ class _AllTasksState extends State<AllTasks> {
                     },
                     onRemove: () {
                       setState(() {
-                        tasks.deleteTask(selectedTask!);
+                        tasksCollection.deleteTask(selectedTask!);
                         selectedTask = null;
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
@@ -68,7 +67,7 @@ class _AllTasksState extends State<AllTasks> {
                 : Container(), //container when we have nothing to display !
             Expanded(
               child: TaskMaster(
-                  dataTasks: tasks.getAllTAsks(),
+                  dataTasks: tasksCollection.getAllTAsks(),
                   //on récupère la méthode selectedTask du fichier task_details
                   giveTaskToAllTasks: (Task newval) {
                     setState(() {
