@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
-// import 'package:todo_list/components/tasks/task_details.dart';
-// import 'package:todo_list/data/tasks.dart' as data;
+import 'package:todo_list/models/task.dart';
 
-class OneTask extends StatefulWidget {
-  const OneTask({Key? key, required this.title})
-      : super(key: key); //constrcuteur
+class OneTask extends StatelessWidget {
+  const OneTask({Key? key}) : super(key: key);
 
-  final String title;
-
-  @override
-  _OneTaskState createState() => _OneTaskState();
-}
-
-class _OneTaskState extends State<OneTask> {
   @override
   Widget build(BuildContext context) {
+    final Task? task = ModalRoute.of(context)!.settings.arguments as Task?;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(task!.content),
       ),
       // body: TaskDetails(task: data.tasks),
       floatingActionButton: FloatingActionButton(
