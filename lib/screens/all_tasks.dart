@@ -29,7 +29,8 @@ class _AllTasksState extends State<AllTasks> {
 
   Widget _showDetailsWhenTaskIsSelected() {
     return (selectedTask != null)
-        ? TaskDetails(task: selectedTask, onClose: _closeDetails)
+        ? TaskDetails(
+            task: selectedTask, onClose: _closeDetails, onRemove: _removeTask)
         : Container(); //container when we have nothing to display !
   }
 
@@ -37,6 +38,27 @@ class _AllTasksState extends State<AllTasks> {
     setState(() {
       selectedTask = null;
     });
+  }
+
+  void _removeTask() {
+    final snackBar = SnackBar(
+      content: const Text('Êtes-vous sûr de supprimer cette tâche ?'),
+      duration: const Duration(seconds: 10),
+      action: SnackBarAction(
+        label: 'Oui',
+        onPressed: () {
+          setState(() {
+            tasks.removeWhere((item) => item.id == selectedTask!.id);
+            _closeDetails();
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Tâche supprimé !'),
+            ));
+          });
+        },
+      ),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _addTask(Task newTask) {
