@@ -28,46 +28,6 @@ class _AllTasksState extends State<AllTasks> {
     tasks = widget.listTasks;
   }
 
-  //Show Widget of TaskDetails if it's selected or not
-  Widget _showDetailsWhenTaskIsSelected() {
-    return (selectedTask != null)
-        ? TaskDetails(
-            task: selectedTask, onClose: _closeDetails, onRemove: _removeTask)
-        : Container(); //container when we have nothing to display !
-  }
-
-  //method to close TaskDetails window
-  void _closeDetails() {
-    setState(() {
-      selectedTask = null;
-    });
-  }
-
-  //method to remove a task
-  void _removeTask() {
-    final snackBar = SnackBar(
-      content: const Text('Êtes-vous sûr de supprimer cette tâche ?'),
-      duration: const Duration(seconds: 10),
-      action: SnackBarAction(
-        label: 'Oui',
-        onPressed: () {
-          setState(() {
-            //remove task from List<Task>
-            tasks.removeWhere((item) => item.id == selectedTask!.id);
-            //call the method who close the TaskDetails window
-            _closeDetails();
-            //show the snackBar for suppression confirmation
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text('Tâche supprimé !'),
-            ));
-          });
-        },
-      ),
-    );
-    // snackBar of question about suppression or not
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
   //method to add a task
   void _addTask(Task newTask) {
     setState(() {
@@ -87,7 +47,25 @@ class _AllTasksState extends State<AllTasks> {
       body: Consumer<TasksCollection>(builder: ((context, tasks, child) {
         return Column(
           children: <Widget>[
-            _showDetailsWhenTaskIsSelected(), //container when we have nothing to display !
+            (selectedTask != null)
+                ? TaskDetails(
+                    task: selectedTask,
+                    onClose: () {
+                      setState(() {
+                        selectedTask = null;
+                      });
+                    },
+                    onRemove: () {
+                      setState(() {
+                        tasks.deleteTask(selectedTask!);
+                        selectedTask = null;
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text('Tâche supprimé !'),
+                        ));
+                      });
+                    })
+                : Container(), //container when we have nothing to display !
             Expanded(
               child: TaskMaster(
                   dataTasks: tasks.getAllTAsks(),
