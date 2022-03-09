@@ -87,13 +87,14 @@ class _AllTasksState extends State<AllTasks> {
         );
       })),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          Task result = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => const TaskForm()));
-          // _addTask(result);
-        },
+        // onPressed: () async {
+        //   Task result = await Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //           builder: (BuildContext context) => const TaskForm()));
+        //   // _addTask(result);
+        // },
+        onPressed: () {},
         tooltip: 'Add a task',
         child: const Icon(Icons.add),
       ),
