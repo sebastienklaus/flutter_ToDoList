@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/components/tasks/task_details.dart';
+import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
 import 'package:todo_list/components/tasks/task_form.dart';
@@ -82,21 +84,23 @@ class _AllTasksState extends State<AllTasks> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          _showDetailsWhenTaskIsSelected(), //container when we have nothing to display !
-          Expanded(
-            child: TaskMaster(
-                dataTasks: tasks,
-                //on récupère la méthode selectedTask du fichier task_details
-                giveTaskToAllTasks: (Task newval) {
-                  setState(() {
-                    selectedTask = newval;
-                  });
-                }),
-          ),
-        ],
-      ),
+      body: Consumer<TasksCollection>(builder: ((context, tasks, child) {
+        return Column(
+          children: <Widget>[
+            _showDetailsWhenTaskIsSelected(), //container when we have nothing to display !
+            Expanded(
+              child: TaskMaster(
+                  dataTasks: tasks.getAllTAsks(),
+                  //on récupère la méthode selectedTask du fichier task_details
+                  giveTaskToAllTasks: (Task newval) {
+                    setState(() {
+                      selectedTask = newval;
+                    });
+                  }),
+            ),
+          ],
+        );
+      })),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           Task result = await Navigator.push(
