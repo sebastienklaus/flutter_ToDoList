@@ -1,10 +1,22 @@
 import 'package:flutter/widgets.dart';
 import 'package:todo_list/data/tasks.dart';
+import 'package:todo_list/models/task.dart';
 
 class TasksCollection extends ChangeNotifier {
-  void create() {}
+  final List<Task> _tasksList = tasks;
 
-  void update() {}
+  List<Task> getAllTAsks() {
+    return _tasksList;
+  }
 
-  void delete() {}
+  void createTask(Task task) {
+    _tasksList.add(task);
+    notifyListeners();
+  }
+
+  void updateTask() {}
+
+  void deleteTask(Task task) {
+    tasks.removeWhere((item) => item.id == task!.id);
+  }
 }
