@@ -17,6 +17,6 @@ class TasksCollection extends ChangeNotifier {
   void updateTask() {}
 
   void deleteTask(Task task) {
-    tasks.removeWhere((item) => item.id == task!.id);
+    tasks.removeWhere((item) => item.id == task.id);
   }
 }
