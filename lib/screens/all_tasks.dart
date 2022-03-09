@@ -19,7 +19,7 @@ class AllTasks extends StatefulWidget {
 
 class _AllTasksState extends State<AllTasks> {
   Task? selectedTask;
-  late List<Task> tasks;
+  // late List<Task> tasks;
 
   @override
   void initState() {
@@ -27,14 +27,14 @@ class _AllTasksState extends State<AllTasks> {
   }
 
   //method to add a task
-  void _addTask(Task newTask) {
-    setState(() {
-      tasks.add(newTask);
-      // int index = tasks.length + 1;
-      // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
-      //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
-    });
-  }
+  // void _addTask(Task newTask) {
+  //   setState(() {
+  //     tasks.add(newTask);
+  //     // int index = tasks.length + 1;
+  //     // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
+  //     //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _AllTasksState extends State<AllTasks> {
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => const TaskForm()));
-          _addTask(result);
+          // _addTask(result);
         },
         tooltip: 'Add a task',
         child: const Icon(Icons.add),
