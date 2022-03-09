@@ -67,6 +67,7 @@ class _AllTasksState extends State<AllTasks> {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
                           backgroundColor: Colors.green,
+                          duration: Duration(seconds: 2),
                           content: Text('Tâche supprimé !'),
                         ));
                       });
