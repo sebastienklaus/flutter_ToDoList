@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/screens/all_tasks.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todo_list/data/tasks.dart' as data;
 import 'package:todo_list/data/tasks_collection.dart';
 
 void main() {
@@ -28,7 +27,9 @@ class TodoList extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: AllTasks(title: 'Todo List', listTasks: data.tasks),
+      home: const AllTasks(
+        title: 'Todo List',
+      ),
     );
   }
 }
