@@ -49,13 +49,17 @@ class _AllTasksState extends State<AllTasks> {
             (selectedTask != null)
                 ? TaskDetails(
                     task: selectedTask,
+                    //callback of onRemove line 59 (Widget CloseButton) task_details
                     onClose: () {
                       setState(() {
                         selectedTask = null;
                       });
                     },
+                    //callback of onRemove line 75 task_details
                     onRemove: () {
                       setState(() {
+                        //on appelle la source de données du Consumer (ou Provider plutôt)
+                        //ainsi que sa méthode deleteTask()
                         tasksCollection.deleteTask(selectedTask!);
                         selectedTask = null;
                         ScaffoldMessenger.of(context)
