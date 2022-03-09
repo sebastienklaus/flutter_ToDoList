@@ -24,9 +24,9 @@ class _AllTasksState extends State<AllTasks> {
   void initState() {
     super.initState();
     tasks = widget.listTasks;
-    print('actualise');
   }
 
+  //Show Widget of TaskDetails if it's selected or not
   Widget _showDetailsWhenTaskIsSelected() {
     return (selectedTask != null)
         ? TaskDetails(
@@ -34,12 +34,14 @@ class _AllTasksState extends State<AllTasks> {
         : Container(); //container when we have nothing to display !
   }
 
+  //method to close TaskDetails window
   void _closeDetails() {
     setState(() {
       selectedTask = null;
     });
   }
 
+  //method to remove a task
   void _removeTask() {
     final snackBar = SnackBar(
       content: const Text('Êtes-vous sûr de supprimer cette tâche ?'),
@@ -48,8 +50,11 @@ class _AllTasksState extends State<AllTasks> {
         label: 'Oui',
         onPressed: () {
           setState(() {
+            //remove task from List<Task>
             tasks.removeWhere((item) => item.id == selectedTask!.id);
+            //call the method who close the TaskDetails window
             _closeDetails();
+            //show the snackBar for suppression confirmation
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Tâche supprimé !'),
             ));
@@ -57,14 +62,15 @@ class _AllTasksState extends State<AllTasks> {
         },
       ),
     );
-
+    // snackBar of question about suppression or not
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  //method to add a task
   void _addTask(Task newTask) {
     setState(() {
-      int index = tasks.length + 1;
       tasks.add(newTask);
+      // int index = tasks.length + 1;
       // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
       //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
     });
