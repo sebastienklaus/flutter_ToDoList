@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/models/task.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
+import 'package:todo_list/models/task.dart';
+import 'package:todo_list/data/tasks.dart';
+
 class TaskDetails extends StatelessWidget {
-  const TaskDetails({Key? key, required this.task, required this.onClose})
+  const TaskDetails(
+      {Key? key,
+      required this.task,
+      required this.onClose,
+      required this.onRemove})
       : super(key: key);
   //constrcuteur
   final Task? task;
   final Function onClose;
+  final Function onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +62,22 @@ class TaskDetails extends StatelessWidget {
               // print(onClose);
             },
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                  onPressed: () {
+                    print('delete');
+                    onRemove();
+                  },
+                  child: const Text('Delete')),
+              ElevatedButton(
+                  onPressed: () {
+                    print('update');
+                  },
+                  child: const Text('Update')),
+            ],
+          )
         ],
       ),
     );
