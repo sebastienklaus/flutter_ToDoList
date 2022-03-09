@@ -61,9 +61,12 @@ class _AllTasksState extends State<AllTasks> {
                         //on appelle la source de données du Consumer (ou Provider plutôt)
                         //ainsi que sa méthode deleteTask()
                         tasksCollection.deleteTask(selectedTask!);
+                        //hide taskDetails
                         selectedTask = null;
+                        //display snackBar of success
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
+                          backgroundColor: Colors.green,
                           content: Text('Tâche supprimé !'),
                         ));
                       });
