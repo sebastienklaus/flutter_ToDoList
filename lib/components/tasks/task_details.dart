@@ -82,7 +82,7 @@ class TaskDetails extends StatelessWidget {
                   child: const Text('Delete')),
               ElevatedButton(
                   onPressed: () {
-                    print('update');
+                    Navigator.pushNamed(context, '/one_task', arguments: task);
                   },
                   child: const Text('Update')),
             ],
