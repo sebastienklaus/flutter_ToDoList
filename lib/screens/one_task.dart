@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/components/tasks/task_form.dart';
 import 'package:todo_list/models/task.dart';
 
 class OneTask extends StatelessWidget {
@@ -12,7 +13,7 @@ class OneTask extends StatelessWidget {
       appBar: AppBar(
         title: Text(task!.content),
       ),
-      // body: TaskDetails(task: data.tasks),
+      body: TaskForm(taskToUpdate: task),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Add a task',
