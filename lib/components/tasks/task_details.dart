@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:todo_list/models/task.dart';
-import 'package:todo_list/data/tasks.dart';
 
 class TaskDetails extends StatelessWidget {
   const TaskDetails(
