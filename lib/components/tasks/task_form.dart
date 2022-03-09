@@ -18,13 +18,21 @@ class _TaskFormState extends State<TaskForm> {
   TextEditingController timeCtl = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    taskNameController =
+        TextEditingController(text: widget.taskToUpdate!.content);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    taskNameController.text = widget.taskToUpdate!.content;
     return Form(
       key: _formKey,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         TextFormField(
-          // controller: taskNameController,
-          initialValue: widget.taskToUpdate!.content,
+          controller: taskNameController,
+          // initialValue: taskNameController.text,
           // The validator receives the text that the user has entered.
           decoration: const InputDecoration(labelText: 'Nom de la tâche'),
           validator: (value) {
@@ -61,17 +69,10 @@ class _TaskFormState extends State<TaskForm> {
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
-                // you'd often call a server or save the information in a database.
+                print(taskNameController.text);
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Tâche ajoutée !')),
                 );
-                int index = data.tasks.length;
-
-                Navigator.pop(
-                    context,
-                    Task(
-                        index, taskNameController.text, false, DateTime.now()));
               }
             },
             child: const Text('Submit'),
