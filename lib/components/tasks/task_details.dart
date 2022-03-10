@@ -95,6 +95,7 @@ class TaskDetails extends StatelessWidget {
                   icon: const Icon(Icons.update),
                   onPressed: () {
                     Navigator.pushNamed(context, '/one_task', arguments: task);
+                    onClose();
                   }),
             ],
           )
