@@ -5,7 +5,6 @@ import 'package:todo_list/components/tasks/task_details.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
-import 'package:todo_list/components/tasks/task_form.dart';
 
 class AllTasks extends StatefulWidget {
   const AllTasks({Key? key, required this.title})
