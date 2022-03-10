@@ -70,7 +70,7 @@ class _TaskFormState extends State<TaskForm> {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Tâche ajoutée !')),
+                        const SnackBar(content: Text('Tâche modifiée !')),
                       );
                       tasksCollection.updateTask(Task(
                           widget.taskToUpdate!.id,
