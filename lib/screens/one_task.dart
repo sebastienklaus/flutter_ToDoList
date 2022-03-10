@@ -10,15 +10,9 @@ class OneTask extends StatelessWidget {
     final Task? task = ModalRoute.of(context)!.settings.arguments as Task?;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(task!.content),
-      ),
-      body: TaskForm(taskToUpdate: task),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Add a task',
-        child: const Icon(Icons.add),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Modifier la tâche "${task!.content}"'),
+        ),
+        body: TaskForm(taskToUpdate: task));
   }
 }
