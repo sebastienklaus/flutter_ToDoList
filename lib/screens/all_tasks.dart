@@ -18,22 +18,11 @@ class AllTasks extends StatefulWidget {
 
 class _AllTasksState extends State<AllTasks> {
   Task? selectedTask;
-  // late List<Task> tasks;
 
   @override
   void initState() {
     super.initState();
   }
-
-  //method to add a task
-  // void _addTask(Task newTask) {
-  //   setState(() {
-  //     tasks.add(newTask);
-  //     // int index = tasks.length + 1;
-  //     // tasks.add(Task(index, faker.lorem.words(3).join(' '), random.boolean(),
-  //     //     faker.date.dateTime(minYear: 2022, maxYear: 2022)));
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +37,13 @@ class _AllTasksState extends State<AllTasks> {
             (selectedTask != null)
                 ? TaskDetails(
                     task: selectedTask,
-                    //callback of onRemove line 59 (Widget CloseButton) task_details
+                    //callback of onRemove line 54 (Widget CloseButton) task_details
                     onClose: () {
                       setState(() {
                         selectedTask = null;
                       });
                     },
-                    //callback of onRemove line 75 task_details
+                    //callback of onRemove line 86 task_details
                     onRemove: () {
                       setState(() {
                         //on appelle la source de données du Consumer (ou Provider plutôt)
@@ -86,13 +75,6 @@ class _AllTasksState extends State<AllTasks> {
         );
       })),
       floatingActionButton: FloatingActionButton(
-        // onPressed: () async {
-        //   Task result = await Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //           builder: (BuildContext context) => const TaskForm()));
-        //   // _addTask(result);
-        // },
         onPressed: () {},
         tooltip: 'Add a task',
         child: const Icon(Icons.add),
