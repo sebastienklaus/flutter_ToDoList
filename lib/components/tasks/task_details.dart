@@ -39,7 +39,23 @@ class TaskDetails extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+                icon: const Icon(Icons.close),
+                color: Colors.red,
+                onPressed: () {
+                  //callback in allTasks (after that, there is a setState ...)
+                  onClose();
+                },
+              ),
+            ],
+          ),
           const Text(
             'Titre de la tâche',
             style: TextStyle(
@@ -52,13 +68,6 @@ class TaskDetails extends StatelessWidget {
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           Text(newDate),
-          CloseButton(
-            color: Colors.red,
-            onPressed: () {
-              //callback in allTasks (after that, there is a setState ...)
-              onClose();
-            },
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
