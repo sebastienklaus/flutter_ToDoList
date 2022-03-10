@@ -71,7 +71,9 @@ class TaskDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton(
+              ElevatedButton.icon(
+                  label: const Text('Delete'),
+                  icon: const Icon(Icons.delete),
                   onPressed: () {
                     final snackBar = SnackBar(
                       content: const Text(
@@ -87,13 +89,13 @@ class TaskDetails extends StatelessWidget {
                     );
                     // snackBar of question about suppression or not
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  },
-                  child: const Text('Delete')),
-              ElevatedButton(
+                  }),
+              ElevatedButton.icon(
+                  label: const Text('Update'),
+                  icon: const Icon(Icons.update),
                   onPressed: () {
                     Navigator.pushNamed(context, '/one_task', arguments: task);
-                  },
-                  child: const Text('Update')),
+                  }),
             ],
           )
         ],
