@@ -74,7 +74,9 @@ class _AllTasksState extends State<AllTasks> {
         );
       })),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/create_task');
+        },
         tooltip: 'Add a task',
         child: const Icon(Icons.add),
       ),
