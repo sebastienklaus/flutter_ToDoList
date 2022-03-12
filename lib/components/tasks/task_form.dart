@@ -4,11 +4,11 @@ import 'package:todo_list/models/task.dart';
 import 'package:todo_list/tools/showSnackBar.dart';
 
 class TaskForm extends StatefulWidget {
-  const TaskForm({Key? key, required this.taskToUpdate, required this.onUpdate})
+  const TaskForm({Key? key, this.taskToUpdate, required this.onChangeTask})
       : super(key: key);
 
   final Task? taskToUpdate;
-  final Function onUpdate;
+  final Function onChangeTask;
 
   @override
   State<TaskForm> createState() => _TaskFormState();
@@ -71,7 +71,7 @@ class _TaskFormState extends State<TaskForm> {
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState!.validate()) {
-                  widget.onUpdate(Task(widget.taskToUpdate!.id,
+                  widget.onChangeTask(Task(widget.taskToUpdate!.id,
                       taskNameController.text, checkedValue, DateTime.now()));
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(snackBarMessage()

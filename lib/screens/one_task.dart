@@ -24,7 +24,7 @@ class _OneTaskState extends State<OneTask> {
             builder: (context, tasksCollection, child) {
           return TaskForm(
             taskToUpdate: task,
-            onUpdate: (newTask) {
+            onChangeTask: (newTask) {
               setState(() {
                 tasksCollection.updateTask(newTask);
               });
