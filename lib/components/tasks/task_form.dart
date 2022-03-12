@@ -98,6 +98,7 @@ class _TaskFormState extends State<TaskForm> {
                     ]),
               )
             : Form(
+                // TODO : add a description in Task
                 key: _formKey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
