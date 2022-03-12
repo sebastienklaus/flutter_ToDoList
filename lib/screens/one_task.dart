@@ -12,6 +12,9 @@ class OneTask extends StatefulWidget {
 }
 
 class _OneTaskState extends State<OneTask> {
+  // * int actionCreate = 1;
+  // * int actionUpdate = 2;
+
   @override
   Widget build(BuildContext context) {
     final Task? task = ModalRoute.of(context)!.settings.arguments as Task?;
@@ -23,6 +26,7 @@ class _OneTaskState extends State<OneTask> {
         body: Consumer<TasksCollection>(
             builder: (context, tasksCollection, child) {
           return TaskForm(
+            typeOfAction: 2,
             taskToUpdate: task,
             onChangeTask: (newTask) {
               setState(() {
