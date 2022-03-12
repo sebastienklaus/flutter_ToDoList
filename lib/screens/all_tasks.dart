@@ -55,7 +55,7 @@ class _AllTasksState extends State<AllTasks> {
                         selectedTask = null;
                         //display snackBar of success
                         ScaffoldMessenger.of(context).showSnackBar(
-                            showSnackBar()
+                            snackBarMessage()
                                 .success('Cette tâche à bien été supprimé'));
                       });
                     })
