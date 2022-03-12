@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/components/tasks/task_form.dart';
 import 'package:todo_list/data/tasks_collection.dart';
+import 'package:todo_list/models/task.dart';
 
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
@@ -11,9 +12,6 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
-  // * int actionCreate = 1;
-  // * int actionUpdate = 2;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,15 +19,15 @@ class _CreateTaskState extends State<CreateTask> {
           title: const Text('Créer une nouvelle tâche'),
         ),
         body: Consumer<TasksCollection>(
-            builder: (context, tasksCollection, child) {
-          return TaskForm(
-            typeOfAction: 1,
-            onChangeTask: (newTask) {
-              setState(() {
-                tasksCollection.createTask(newTask);
-              });
-            },
-          );
-        }));
+          builder: (context, tasksCollection, child) {
+            return TaskForm(
+              onChangeTask: (newTask) {
+                setState(() {
+                  tasksCollection.createTask(newTask);
+                });
+              },
+            );
+          },
+        ));
   }
 }
