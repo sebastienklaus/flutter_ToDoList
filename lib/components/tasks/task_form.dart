@@ -35,24 +35,9 @@ class _TaskFormState extends State<TaskForm> {
       child: Form(
         key: _formKey,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          TextFormField(
-            controller: taskNameController,
-            // The validator receives the text that the user has entered.
-            decoration: const InputDecoration(labelText: 'Nom de la tâche'),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Tâche terminée',
-                style: TextStyle(fontSize: 16),
-              ),
               Checkbox(
                 value: checkedValue,
                 onChanged: (newValue) {
@@ -60,7 +45,24 @@ class _TaskFormState extends State<TaskForm> {
                     checkedValue = newValue!;
                   });
                 },
-              )
+                shape: const CircleBorder(side: BorderSide(width: 2)),
+              ),
+              Flexible(
+                child: TextFormField(
+                  controller: taskNameController,
+                  // The validator receives the text that the user has entered.
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    // labelText: 'Nom de la tâche',
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
+                ),
+              ),
             ],
           ),
           Padding(
