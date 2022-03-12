@@ -3,10 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 
+import 'package:todo_list/tools/showSnackBar.dart';
+
 class TaskForm extends StatefulWidget {
-  const TaskForm({Key? key, required this.taskToUpdate}) : super(key: key);
+  const TaskForm({Key? key, required this.taskToUpdate, required this.onUpdate})
+      : super(key: key);
 
   final Task? taskToUpdate;
+  final Function onUpdate;
 
   @override
   State<TaskForm> createState() => _TaskFormState();
@@ -61,32 +65,28 @@ class _TaskFormState extends State<TaskForm> {
               )
             ],
           ),
-          Consumer<TasksCollection>(
-            builder: (context, tasksCollection, child) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Validate returns true if the form is valid, or false otherwise.
-                    if (_formKey.currentState!.validate()) {
-                      tasksCollection.updateTask(Task(
-                          widget.taskToUpdate!.id,
-                          taskNameController.text,
-                          checkedValue,
-                          DateTime.now()));
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Tâche modifiée !')),
-                      );
-                    }
-                  },
-                  child: const Text('Submit'),
-                ),
-              );
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, or false otherwise.
+                if (_formKey.currentState!.validate()) {
+                  widget.onUpdate(Task(widget.taskToUpdate!.id,
+                      taskNameController.text, checkedValue, DateTime.now()));
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(snackBarMessage()
+                      .info('Une tâche vient d\'être modifiée'));
+                }
+              },
+              child: const Text('Submit'),
+            ),
           )
         ]),
       ),
     );
   }
 }
+// const SnackBar(
+//                         backgroundColor: Color(0xff17a2b8),
+//                         content: Text('Tâche modifiée !')),
+//                   );
