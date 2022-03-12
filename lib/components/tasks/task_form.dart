@@ -67,7 +67,7 @@ class _TaskFormState extends State<TaskForm> {
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
+                                  return 'Veuillez insérer du texte';
                                 }
                                 return null;
                               },
@@ -97,6 +97,45 @@ class _TaskFormState extends State<TaskForm> {
                       )
                     ]),
               )
-            : const Text('s'));
+            : Form(
+                key: _formKey,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller: taskNameController,
+                        // The validator receives the text that the user has entered.
+                        decoration: const InputDecoration(
+                          labelText: 'Nom de la tâche',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Veuillez insérer du texte';
+                          }
+                          return null;
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Validate returns true if the form is valid, or false otherwise.
+                            if (_formKey.currentState!.validate()) {
+                              // widget.onChangeTask(Task(
+                              //     widget.taskToUpdate!.id,
+                              //     taskNameController.text,
+                              //     checkedValue,
+                              //     DateTime.now()));
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBarMessage().info(
+                                      'Une tâche vient d\'être modifiée'));
+                            }
+                          },
+                          child: const Text('Submit'),
+                        ),
+                      )
+                    ]),
+              ));
   }
 }
