@@ -99,6 +99,7 @@ class _TaskFormState extends State<TaskForm> {
               )
             : Form(
                 // TODO : add a description in Task
+                // TODO : add a input for description (https://blog.logrocket.com/the-ultimate-guide-to-text-fields-in-flutter/)
                 key: _formKey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
