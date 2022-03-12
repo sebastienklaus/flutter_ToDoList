@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
+
 import 'package:provider/provider.dart';
 import 'package:todo_list/components/tasks/task_details.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
+
+import 'package:todo_list/tools/showSnackBar.dart';
 
 class AllTasks extends StatefulWidget {
   const AllTasks({Key? key, required this.title})
@@ -52,12 +54,9 @@ class _AllTasksState extends State<AllTasks> {
                         //hide taskDetails
                         selectedTask = null;
                         //display snackBar of success
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          backgroundColor: Colors.green,
-                          duration: Duration(seconds: 2),
-                          content: Text('Tâche supprimé !'),
-                        ));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            showSnackBar()
+                                .success('Cette tâche à bien été supprimé'));
                       });
                     })
                 : Container(), //container when we have nothing to display !
