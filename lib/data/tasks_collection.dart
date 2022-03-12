@@ -9,6 +9,10 @@ class TasksCollection extends ChangeNotifier {
     return _tasksList;
   }
 
+  int lengthListTasks() {
+    return _tasksList.length;
+  }
+
   void createTask(Task task) {
     _tasksList.add(task);
     notifyListeners();
