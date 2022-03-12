@@ -17,7 +17,7 @@ class TaskForm extends StatefulWidget {
 class _TaskFormState extends State<TaskForm> {
   final _formKey = GlobalKey<FormState>();
   late bool checkedValue;
-  // * controller(s) about the input
+  // * controller(s) about the input(s)
   TextEditingController taskNameController = TextEditingController();
 
   @override
