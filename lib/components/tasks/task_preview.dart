@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 
+import 'package:todo_list/tools/showSnackBar.dart';
+
 class TaskPreview extends StatelessWidget {
   const TaskPreview({Key? key, required this.task, required this.giveTaskData})
       : super(key: key);
@@ -27,11 +29,8 @@ class TaskPreview extends StatelessWidget {
       ),
       onDismissed: (direction) {
         TasksCollection().deleteTask(task);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.green,
-          duration: Duration(seconds: 2),
-          content: Text('Tâche supprimé !'),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+            snackBarMessage().success('Cette tâche à bien été supprimé'));
       },
       child: ListTile(
         leading: task.completed
@@ -40,11 +39,12 @@ class TaskPreview extends StatelessWidget {
         title: task.completed
             ? Text(
                 task.content,
-                style: const TextStyle(decoration: TextDecoration.lineThrough),
+                style: const TextStyle(
+                    decoration: TextDecoration.lineThrough, color: Colors.grey),
               )
             : Text(task.content),
         subtitle: task.completed ? const Text('Fait') : const Text('A faire'),
-        tileColor: task.completed ? Colors.green[100] : null,
+        tileColor: task.completed ? Colors.grey[200] : null,
         trailing: const Icon(Icons.drag_handle_rounded),
         onTap: () {
           //on remonte TaskData vers task_master
