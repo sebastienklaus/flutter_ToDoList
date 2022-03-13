@@ -90,7 +90,8 @@ class _TaskFormState extends State<TaskForm> {
                                   color:
                                       Theme.of(context).colorScheme.primary)),
                         ),
-                        maxLines: 5,
+                        minLines: 1,
+                        maxLines: 10,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Veuillez insérer du texte';
@@ -136,6 +137,30 @@ class _TaskFormState extends State<TaskForm> {
                           hintText: 'data',
                           labelText: 'Nom de la tâche',
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Veuillez insérer du texte';
+                          }
+                          return null;
+                        },
+                      ),
+                      TextFormField(
+                        controller: taskDescriptionController,
+                        // The validator receives the text that the user has entered.
+                        decoration: InputDecoration(
+                          labelText: 'Description',
+                          //border when input is enable
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          //border when user clicked on it
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
+                        ),
+                        minLines: 1,
+                        maxLines: 10,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Veuillez insérer du texte';
