@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -36,7 +38,7 @@ class TaskDetails extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(5),
       ),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
@@ -56,23 +58,20 @@ class TaskDetails extends StatelessWidget {
               ),
             ],
           ),
-          const Text(
-            'Titre de la tâche',
-            style: TextStyle(
+          Text(
+            task!.content,
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          Text(task!.content),
-          const Text(
-            'Crée le :',
-            style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+          Text(task!.description),
+          const SizedBox(
+            height: 20,
           ),
-          Text(newDate),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton.icon(
-                  label: const Text('Delete'),
+                  label: const Text('Supprimer'),
                   icon: const Icon(Icons.delete),
                   onPressed: () {
                     final snackBar = SnackBar(
@@ -91,14 +90,28 @@ class TaskDetails extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }),
               ElevatedButton.icon(
-                  label: const Text('Update'),
+                  label: const Text('Modifier'),
                   icon: const Icon(Icons.update),
                   onPressed: () {
                     Navigator.pushNamed(context, '/one_task', arguments: task);
                     onClose();
                   }),
             ],
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            child: Text(
+              'Créée le $newDate',
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(width: 1.0, color: Colors.grey),
+              ),
+            ),
+          ),
         ],
       ),
     );
