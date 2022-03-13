@@ -17,8 +17,10 @@ class TaskForm extends StatefulWidget {
 class _TaskFormState extends State<TaskForm> {
   final _formKey = GlobalKey<FormState>();
   late bool checkedValue;
+
   // * controller(s) about the input(s)
   TextEditingController taskNameController = TextEditingController();
+  TextEditingController taskDescriptionController = TextEditingController();
 
   @override
   void initState() {
@@ -26,23 +28,21 @@ class _TaskFormState extends State<TaskForm> {
     if (widget.taskToUpdate != null) {
       taskNameController =
           TextEditingController(text: widget.taskToUpdate!.content);
+      taskDescriptionController =
+          TextEditingController(text: widget.taskToUpdate!.description);
       checkedValue = widget.taskToUpdate!.completed;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // if it's an action of Create, then
-
-    // if else this is an action of Update
-
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: widget.taskToUpdate != null
             ? Form(
                 key: _formKey,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,6 +75,29 @@ class _TaskFormState extends State<TaskForm> {
                           ),
                         ],
                       ),
+                      TextFormField(
+                        controller: taskDescriptionController,
+                        // The validator receives the text that the user has entered.
+                        decoration: InputDecoration(
+                          labelText: 'Description',
+                          //border when input is enable
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          //border when user clicked on it
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
+                        ),
+                        maxLines: 5,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Veuillez insérer du texte';
+                          }
+                          return null;
+                        },
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: ElevatedButton(
@@ -84,6 +107,7 @@ class _TaskFormState extends State<TaskForm> {
                               widget.onChangeTask(Task(
                                   widget.taskToUpdate!.id,
                                   taskNameController.text,
+                                  taskDescriptionController.text,
                                   checkedValue,
                                   DateTime.now()));
                               Navigator.pop(context);
@@ -92,7 +116,7 @@ class _TaskFormState extends State<TaskForm> {
                                       'Une tâche vient d\'être modifiée'));
                             }
                           },
-                          child: const Text('Submit'),
+                          child: const Text('Sauvegarder'),
                         ),
                       )
                     ]),
@@ -108,6 +132,8 @@ class _TaskFormState extends State<TaskForm> {
                         controller: taskNameController,
                         // The validator receives the text that the user has entered.
                         decoration: const InputDecoration(
+                          hintStyle: TextStyle(color: Colors.red),
+                          hintText: 'data',
                           labelText: 'Nom de la tâche',
                         ),
                         validator: (value) {
@@ -123,11 +149,6 @@ class _TaskFormState extends State<TaskForm> {
                           onPressed: () {
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
-                              // widget.onChangeTask(Task(
-                              //     widget.taskToUpdate!.id,
-                              //     taskNameController.text,
-                              //     checkedValue,
-                              //     DateTime.now()));
                               Navigator.pop(context);
                               ScaffoldMessenger.of(context).showSnackBar(
                                   snackBarMessage().info(
