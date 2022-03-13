@@ -4,6 +4,8 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:todo_list/models/task.dart';
 
+import 'package:todo_list/tools/showSnackBar.dart';
+
 class TaskDetails extends StatelessWidget {
   const TaskDetails(
       {Key? key,
@@ -65,50 +67,46 @@ class TaskDetails extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          const Divider(
+            thickness: 2,
+          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton.icon(
-                  label: const Text('Supprimer'),
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    final snackBar = SnackBar(
-                      content: const Text(
-                          'Êtes-vous sûr de supprimer cette tâche ?'),
-                      duration: const Duration(seconds: 10),
-                      action: SnackBarAction(
-                        label: 'Oui',
-                        onPressed: () {
-                          //callback in allTasks (after that, there is a setState ...)
-                          onRemove();
-                        },
+              Text('Créée le $newDate'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      padding: EdgeInsets.all(5),
+                      constraints: const BoxConstraints(),
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
                       ),
-                    );
-                    // snackBar of question about suppression or not
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }),
-              ElevatedButton.icon(
-                  label: const Text('Modifier'),
-                  icon: const Icon(Icons.update),
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/one_task', arguments: task);
-                    onClose();
-                  }),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            child: Text(
-              'Créée le $newDate',
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-            decoration: const BoxDecoration(
-              border: Border(
-                top: BorderSide(width: 1.0, color: Colors.grey),
+                      onPressed: () {
+                        // snackBar of question about suppression or not & action
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            snackBarMessage().validation(
+                                'Êtes-vous sûr de supprimer cette tâche ?',
+                                'Oui',
+                                onRemove));
+                      }),
+                  IconButton(
+                      padding: const EdgeInsets.all(5),
+                      color: Colors.blue,
+                      splashColor: Colors.green,
+                      hoverColor: Colors.red,
+                      constraints: const BoxConstraints(),
+                      icon: const Icon(Icons.update),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/one_task',
+                            arguments: task);
+                        onClose();
+                      }),
+                ],
               ),
-            ),
+            ],
           ),
         ],
       ),
