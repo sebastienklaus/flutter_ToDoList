@@ -2,10 +2,28 @@ import 'package:flutter/material.dart';
 
 class snackBarMessage {
   //method about a SnackBar for success action
+  SnackBar validation(
+      String messageContent, String messageLabel, Function actionPressed) {
+    return SnackBar(
+      content: Text(messageContent),
+      duration: const Duration(seconds: 10),
+      behavior: SnackBarBehavior.floating,
+      action: SnackBarAction(
+        label: messageLabel,
+        onPressed: () {
+          //callback in allTasks (after that, there is a setState ...)
+          actionPressed();
+        },
+      ),
+    );
+  }
+
+  //method about a SnackBar for success action
   SnackBar success(String message) {
     return SnackBar(
       backgroundColor: Colors.green,
       duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
       content: Row(
         children: [
           const Icon(
@@ -26,6 +44,7 @@ class snackBarMessage {
     return SnackBar(
       backgroundColor: const Color(0xff3399ff),
       duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
       content: Row(
         children: [
           const Icon(
