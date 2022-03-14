@@ -9,6 +9,11 @@ class TasksCollection extends ChangeNotifier {
     return _tasksList;
   }
 
+  void sortByName() {
+    _tasksList.sort(((a, b) => a.content.compareTo(b.content)));
+    notifyListeners();
+  }
+
   int lengthListTasks() {
     return _tasksList.length;
   }
