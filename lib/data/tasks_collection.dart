@@ -17,9 +17,9 @@ class TasksCollection extends ChangeNotifier {
   void sortByStatus() {
     _tasksList.sort((a, b) {
       if (a.completed == b.completed) {
-        return 1;
-      } else if (a.completed) {
         return 0;
+      } else if (b.completed) {
+        return -1;
       }
       return 1;
     });
