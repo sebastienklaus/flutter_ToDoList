@@ -162,32 +162,37 @@ class _TaskFormState extends State<TaskForm> {
                       const SizedBox(
                         height: 30,
                       ),
-                      TextFormField(
-                        controller: taskDescriptionController,
-                        // The validator receives the text that the user has entered.
-                        decoration: InputDecoration(
-                          labelText: 'Description',
-                          //border when input is enable
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
+                      Expanded(
+                        child: TextFormField(
+                          controller: taskDescriptionController,
+                          // The validator receives the text that the user has entered.
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            labelText: 'Description',
+                            //border when input is enable
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                            errorBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            //border when user clicked on it
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary)),
                           ),
-                          errorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red),
-                          ),
-                          //border when user clicked on it
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.primary)),
+                          maxLines: null,
+                          expands: true,
+                          textAlignVertical: TextAlignVertical.top,
+
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Veuillez insérer du texte';
+                            }
+                            return null;
+                          },
                         ),
-                        minLines: 1,
-                        maxLines: 10,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Veuillez insérer du texte';
-                          }
-                          return null;
-                        },
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
