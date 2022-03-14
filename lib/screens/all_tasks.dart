@@ -28,13 +28,37 @@ class _AllTasksState extends State<AllTasks> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Consumer<TasksCollection>(
-          builder: ((context, tasksCollection, child) {
-        return Column(
+    return Consumer<TasksCollection>(
+        builder: ((context, tasksCollection, child) {
+      return Scaffold(
+        appBar: AppBar(title: Text(widget.title), actions: [
+          PopupMenuButton(
+              onSelected: (result) {
+                if (result == 1) {
+                  tasksCollection.sortByName();
+                }
+              },
+              itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 1,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.sort_by_alpha_outlined,
+                            color: Colors.black,
+                          ),
+                          Text(' Tri par ordre alphabétique'),
+                        ],
+                      ),
+                    ),
+                    const PopupMenuItem(
+                      child: Text("Second"),
+                      value: 2,
+                    )
+                  ])
+        ]),
+        body: Column(
           children: <Widget>[
             (selectedTask != null)
                 ? TaskDetails(
@@ -73,15 +97,15 @@ class _AllTasksState extends State<AllTasks> {
                   }),
             ),
           ],
-        );
-      })),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/create_task');
-        },
-        tooltip: 'Add a task',
-        child: const Icon(Icons.add),
-      ),
-    );
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/create_task');
+          },
+          tooltip: 'Add a task',
+          child: const Icon(Icons.add),
+        ),
+      );
+    }));
   }
 }
