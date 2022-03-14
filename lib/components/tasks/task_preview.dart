@@ -62,7 +62,8 @@ class TaskPreview extends StatelessWidget {
                     decoration: TextDecoration.lineThrough, color: Colors.grey),
               )
             : Text(task.content),
-        subtitle: task.completed ? const Text('Fait') : const Text('A faire'),
+        subtitle:
+            task.completed ? const Text('Terminé') : const Text('En cours'),
         tileColor: task.completed ? Colors.grey[200] : null,
         trailing: const Icon(Icons.drag_handle_rounded),
         onTap: () {
