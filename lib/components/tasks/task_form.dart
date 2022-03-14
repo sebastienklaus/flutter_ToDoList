@@ -138,6 +138,9 @@ class _TaskFormState extends State<TaskForm> {
                         controller: taskNameController,
                         // The validator receives the text that the user has entered.
                         decoration: InputDecoration(
+                          alignLabelWithHint: true,
+                          labelStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
                           labelText: 'Nom',
                           //border when input is enable
                           enabledBorder: const OutlineInputBorder(
@@ -169,6 +172,8 @@ class _TaskFormState extends State<TaskForm> {
                           decoration: InputDecoration(
                             alignLabelWithHint: true,
                             labelText: 'Description',
+                            labelStyle:
+                                const TextStyle(fontWeight: FontWeight.bold),
                             //border when input is enable
                             enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey),
