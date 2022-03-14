@@ -205,8 +205,8 @@ class _TaskFormState extends State<TaskForm> {
                               ScaffoldMessenger.of(context)
                                   .hideCurrentSnackBar();
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  snackBarMessage().info(
-                                      'Une tâche vient d\'être modifiée'));
+                                  snackBarMessage().success(
+                                      'Création d\'une tâche réussie !'));
                             } else {
                               //hide current snackbar
                               ScaffoldMessenger.of(context)
