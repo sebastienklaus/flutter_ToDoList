@@ -14,6 +14,7 @@ class TaskMaster extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      shrinkWrap: true,
       cacheExtent: 0.0,
       itemCount: dataTasks.length,
       itemBuilder: (context, index) {

@@ -53,6 +53,8 @@ class _AllTasksState extends State<AllTasks> {
                         tasksCollection.deleteTask(selectedTask!);
                         //hide taskDetails
                         selectedTask = null;
+                        //hide current snackbar
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         //display snackBar of success
                         ScaffoldMessenger.of(context).showSnackBar(
                             snackBarMessage()

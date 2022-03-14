@@ -29,6 +29,8 @@ class TaskPreview extends StatelessWidget {
       ),
       onDismissed: (direction) {
         TasksCollection().deleteTask(task);
+        //hide current snackbar
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
             snackBarMessage().success('Cette tâche à bien été supprimé'));
       },

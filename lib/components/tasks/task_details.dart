@@ -85,6 +85,8 @@ class TaskDetails extends StatelessWidget {
                         color: Colors.red,
                       ),
                       onPressed: () {
+                        //hide current snackbar
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         // snackBar of question about suppression or not & action
                         ScaffoldMessenger.of(context).showSnackBar(
                             snackBarMessage().validation(
