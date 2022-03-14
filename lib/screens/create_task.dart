@@ -21,9 +21,11 @@ class _CreateTaskState extends State<CreateTask> {
         body: Consumer<TasksCollection>(
           builder: (context, tasksCollection, child) {
             return TaskForm(
-              onChangeTask: (Task newTask) {
+              onChangeTask: (name, description, complete, date) {
                 setState(() {
-                  tasksCollection.createTask(newTask);
+                  int id = tasksCollection.lengthListTasks();
+                  Task task = Task(id, name, description, complete, date);
+                  tasksCollection.createTask(task);
                 });
               },
             );
