@@ -143,6 +143,9 @@ class _TaskFormState extends State<TaskForm> {
                           enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                           ),
+                          errorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
                           //border when user clicked on it
                           focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -167,6 +170,9 @@ class _TaskFormState extends State<TaskForm> {
                           //border when input is enable
                           enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          errorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
                           ),
                           //border when user clicked on it
                           focusedBorder: OutlineInputBorder(
