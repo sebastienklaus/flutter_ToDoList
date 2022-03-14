@@ -36,8 +36,8 @@ class TaskPreview extends StatelessWidget {
       },
       child: ListTile(
         leading: task.completed
-            ? const Icon(Icons.check_box_rounded)
-            : const Icon(Icons.check_box_outline_blank_rounded),
+            ? const Icon(Icons.check_circle_outlined)
+            : const Icon(Icons.circle_outlined),
         title: task.completed
             ? Text(
                 task.content,
