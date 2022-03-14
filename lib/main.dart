@@ -10,6 +10,7 @@ void main() {
   runApp(ChangeNotifierProvider(
     create: (context) => TasksCollection(),
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/all_tasks',
       routes: {
         '/all_tasks': (context) => const AllTasks(
