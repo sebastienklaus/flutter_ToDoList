@@ -195,13 +195,11 @@ class _TaskFormState extends State<TaskForm> {
                           onPressed: () {
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
-                              int id = TasksCollection().lengthListTasks();
-                              widget.onChangeTask(Task(
-                                  id,
+                              widget.onChangeTask(
                                   taskNameController.text,
                                   taskDescriptionController.text,
                                   false,
-                                  DateTime.now()));
+                                  DateTime.now());
                               Navigator.pop(context);
                               //hide current snackbar
                               ScaffoldMessenger.of(context)
