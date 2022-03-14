@@ -129,7 +129,7 @@ class _TaskFormState extends State<TaskForm> {
             : Form(
                 key: _formKey,
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
                         height: 30,
