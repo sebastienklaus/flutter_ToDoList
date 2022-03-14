@@ -37,6 +37,9 @@ class _AllTasksState extends State<AllTasks> {
                 if (result == 1) {
                   tasksCollection.sortByName();
                 }
+                if (result == 2) {
+                  tasksCollection.sortByStatus();
+                }
               },
               itemBuilder: (context) => [
                     PopupMenuItem(
@@ -52,10 +55,20 @@ class _AllTasksState extends State<AllTasks> {
                         ],
                       ),
                     ),
-                    const PopupMenuItem(
-                      child: Text("Second"),
+                    PopupMenuItem(
+                      // enabled: false,
                       value: 2,
-                    )
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.sort,
+                            color: Colors.black,
+                          ),
+                          Text(' Tri par statut'),
+                        ],
+                      ),
+                    ),
                   ])
         ]),
         body: Column(
