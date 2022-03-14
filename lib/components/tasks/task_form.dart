@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
@@ -15,7 +16,7 @@ class TaskForm extends StatefulWidget {
 }
 
 class _TaskFormState extends State<TaskForm> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late bool checkedValue;
 
   // * controller(s) about the input(s)
@@ -112,6 +113,9 @@ class _TaskFormState extends State<TaskForm> {
                                   checkedValue,
                                   DateTime.now()));
                               Navigator.pop(context);
+                              //hide current snackbar
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
                               ScaffoldMessenger.of(context).showSnackBar(
                                   snackBarMessage().info(
                                       'Une tâche vient d\'être modifiée'));
@@ -123,19 +127,27 @@ class _TaskFormState extends State<TaskForm> {
                     ]),
               )
             : Form(
-                // TODO : add a description in Task
-                // TODO : add a input for description (https://blog.logrocket.com/the-ultimate-guide-to-text-fields-in-flutter/)
                 key: _formKey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
                       TextFormField(
                         controller: taskNameController,
                         // The validator receives the text that the user has entered.
-                        decoration: const InputDecoration(
-                          hintStyle: TextStyle(color: Colors.red),
-                          hintText: 'data',
-                          labelText: 'Nom de la tâche',
+                        decoration: InputDecoration(
+                          labelText: 'Nom',
+                          //border when input is enable
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                          //border when user clicked on it
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
                         ),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -143,6 +155,9 @@ class _TaskFormState extends State<TaskForm> {
                           }
                           return null;
                         },
+                      ),
+                      const SizedBox(
+                        height: 30,
                       ),
                       TextFormField(
                         controller: taskDescriptionController,
@@ -174,13 +189,30 @@ class _TaskFormState extends State<TaskForm> {
                           onPressed: () {
                             // Validate returns true if the form is valid, or false otherwise.
                             if (_formKey.currentState!.validate()) {
+                              int id = TasksCollection().lengthListTasks();
+                              widget.onChangeTask(Task(
+                                  id,
+                                  taskNameController.text,
+                                  taskDescriptionController.text,
+                                  false,
+                                  DateTime.now()));
                               Navigator.pop(context);
+                              //hide current snackbar
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
                               ScaffoldMessenger.of(context).showSnackBar(
                                   snackBarMessage().info(
                                       'Une tâche vient d\'être modifiée'));
+                            } else {
+                              //hide current snackbar
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBarMessage().danger(
+                                      'Un ou plusieurs champs du formulaire sont incorrects'));
                             }
                           },
-                          child: const Text('Submit'),
+                          child: const Text('Sauvegarder'),
                         ),
                       )
                     ]),
