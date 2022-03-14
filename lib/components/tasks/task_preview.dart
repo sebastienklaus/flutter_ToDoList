@@ -35,9 +35,26 @@ class TaskPreview extends StatelessWidget {
             snackBarMessage().success('Cette tâche à bien été supprimé'));
       },
       child: ListTile(
-        leading: task.completed
-            ? const Icon(Icons.check_circle_outlined)
-            : const Icon(Icons.circle_outlined),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: task.completed
+                  ? const Icon(Icons.check_circle_outlined)
+                  : const Icon(Icons.circle_outlined),
+              onPressed: () {
+                task.completed == true
+                    ? task.completed = false
+                    : task.completed = true;
+                TasksCollection().updateTask(task);
+                //hide current snackbar
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(snackBarMessage().info('Status modifié.'));
+              },
+              tooltip: MaterialLocalizations.of(context).deleteButtonTooltip,
+            );
+          },
+        ),
         title: task.completed
             ? Text(
                 task.content,
