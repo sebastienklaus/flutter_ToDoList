@@ -18,6 +18,7 @@ class TaskPreview extends StatelessWidget {
     return Dismissible(
       key: UniqueKey(),
       direction: DismissDirection.endToStart,
+      dismissThresholds: const {DismissDirection.endToStart: 0.3},
       background: Container(
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.fromLTRB(0, 0, 40, 0),
