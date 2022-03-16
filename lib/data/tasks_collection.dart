@@ -1,9 +1,22 @@
 import 'package:flutter/widgets.dart';
 import 'package:todo_list/data/tasks.dart';
 import 'package:todo_list/models/task.dart';
+import 'package:dio/dio.dart';
 
 class TasksCollection extends ChangeNotifier {
   final List<Task> _tasksList = tasks;
+
+  Future getTaskFromAPI() async {
+    Response response = await Dio().get(
+      'https://jsonplaceholder.typicode.com/todos',
+    );
+    // return response.data;
+    for (var item in response.data) {
+      _tasksList.add(
+          Task(item['id'], item['title'], item['completed'], DateTime.now()));
+    }
+    notifyListeners();
+  }
 
   List<Task> getAllTAsks() {
     return _tasksList;
