@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:todo_list/models/task.dart';
+import 'package:todo_list/screens/one_task.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
 
@@ -102,7 +103,7 @@ class TaskDetails extends StatelessWidget {
                       constraints: const BoxConstraints(),
                       icon: const Icon(Icons.update),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/one_task',
+                        Navigator.pushNamed(context, OneTask.route,
                             arguments: task);
                         onClose();
                       }),
