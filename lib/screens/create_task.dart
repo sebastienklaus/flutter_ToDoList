@@ -7,6 +7,8 @@ import 'package:todo_list/models/task.dart';
 class CreateTask extends StatefulWidget {
   const CreateTask({Key? key}) : super(key: key);
 
+  static String get route => '/create_task';
+
   @override
   State<CreateTask> createState() => _CreateTaskState();
 }

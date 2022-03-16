@@ -9,18 +9,7 @@ import 'package:todo_list/screens/one_task.dart';
 void main() {
   runApp(ChangeNotifierProvider(
     create: (context) => TasksCollection(),
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/all_tasks',
-      routes: {
-        OneTask.route: (context) => const OneTask(),
-        '/all_tasks': (context) => const AllTasks(
-              title: 'Todo List',
-            ),
-        '/one_task': (context) => const OneTask(),
-        '/create_task': (context) => const CreateTask(),
-      },
-    ),
+    child: const TodoList(),
   ));
 }
 
@@ -38,9 +27,15 @@ class TodoList extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const AllTasks(
-        title: 'Todo List',
-      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/all_tasks',
+      routes: {
+        OneTask.route: (context) => const OneTask(),
+        AllTasks.route: (context) => const AllTasks(
+              title: 'Todo List',
+            ),
+        CreateTask.route: (context) => const CreateTask(),
+      },
     );
   }
 }

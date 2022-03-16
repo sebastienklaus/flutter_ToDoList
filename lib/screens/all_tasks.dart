@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/components/tasks/task_details.dart';
 import 'package:todo_list/data/tasks_collection.dart';
@@ -13,6 +12,7 @@ class AllTasks extends StatefulWidget {
       : super(key: key); //constrcuteur
 
   final String title;
+  static String get route => '/all_tasks';
 
   @override
   _AllTasksState createState() => _AllTasksState();
@@ -24,6 +24,11 @@ class _AllTasksState extends State<AllTasks> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      // final tasks = Provider.of<TasksCollection>(context, listen: false);
+      // tasks.getTaskFromAPI();
+    });
+    // tasksCollection.getTaskFromAPI();
   }
 
   @override
@@ -112,11 +117,8 @@ class _AllTasksState extends State<AllTasks> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            Navigator.pushNamed(context, '/create_task');
-            // var dio = Dio();
-            // Response response = await dio.get('/todos/1');
-            // print(response.data.toString());
+          onPressed: () {
+            // Navigator.pushNamed(context, '/create_task');
           },
           tooltip: 'Add a task',
           child: const Icon(Icons.add),
