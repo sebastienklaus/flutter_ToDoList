@@ -13,6 +13,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       initialRoute: '/all_tasks',
       routes: {
+        OneTask.route: (context) => const OneTask(),
         '/all_tasks': (context) => const AllTasks(
               title: 'Todo List',
             ),

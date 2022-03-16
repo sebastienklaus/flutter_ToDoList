@@ -7,6 +7,8 @@ import 'package:todo_list/models/task.dart';
 class OneTask extends StatefulWidget {
   const OneTask({Key? key}) : super(key: key);
 
+  static String get route => '/one_task';
+
   @override
   State<OneTask> createState() => _OneTaskState();
 }
