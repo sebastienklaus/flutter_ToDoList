@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
