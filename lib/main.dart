@@ -28,7 +28,7 @@ class TodoList extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/all_tasks',
+      initialRoute: AllTasks.route,
       routes: {
         OneTask.route: (context) => const OneTask(),
         AllTasks.route: (context) => const AllTasks(
