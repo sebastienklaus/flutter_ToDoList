@@ -63,7 +63,7 @@ class TaskDetails extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
-          Text(task!.description),
+          // Text(task!.description),
           const SizedBox(
             height: 20,
           ),

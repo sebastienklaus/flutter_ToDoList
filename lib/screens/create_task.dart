@@ -24,7 +24,8 @@ class _CreateTaskState extends State<CreateTask> {
               onChangeTask: (name, description, complete, date) {
                 setState(() {
                   int id = tasksCollection.lengthListTasks();
-                  Task task = Task(id, name, description, complete, date);
+                  Task task = Task(id, name, complete, date);
+                  // Task task = Task(id, name, description, complete, date);
                   tasksCollection.createTask(task);
                 });
               },
