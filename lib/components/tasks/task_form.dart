@@ -67,6 +67,7 @@ class _TaskFormState extends State<TaskForm> {
                                   border: InputBorder.none,
                                   // labelText: 'Nom de la tâche',
                                 ),
+                                style: const TextStyle(fontSize: 18),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Veuillez insérer un nom de tâche valide.';
