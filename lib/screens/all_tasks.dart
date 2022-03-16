@@ -25,10 +25,9 @@ class _AllTasksState extends State<AllTasks> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      // final tasks = Provider.of<TasksCollection>(context, listen: false);
-      // tasks.getTaskFromAPI();
+      final tasks = Provider.of<TasksCollection>(context, listen: false);
+      tasks.getTaskFromAPI();
     });
-    // tasksCollection.getTaskFromAPI();
   }
 
   @override
