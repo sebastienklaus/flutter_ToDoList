@@ -4,6 +4,7 @@ import 'package:todo_list/components/tasks/task_details.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
+import 'package:todo_list/screens/create_task.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
 
@@ -116,7 +117,7 @@ class _AllTasksState extends State<AllTasks> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Navigator.pushNamed(context, CreateTask.route);
+            Navigator.pushNamed(context, CreateTask.route);
           },
           tooltip: 'Add a task',
           child: const Icon(Icons.add),
