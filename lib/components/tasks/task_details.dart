@@ -24,7 +24,7 @@ class TaskDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     initializeDateFormatting(); //to change the dte US into FR
     var newDate =
-        DateFormat.yMMMMd('fr_FR').format(task!.createdAt); //date formating
+        DateFormat.yMMMMd('fr_FR').format(task!.createdAt!); //date formating
 
     return Container(
       decoration: BoxDecoration(
