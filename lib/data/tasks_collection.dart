@@ -42,7 +42,7 @@ class TasksCollection extends ChangeNotifier {
   }
 
   void deleteTask(Task task) {
-    tasks.removeWhere((item) => item.id == task.id);
+    _tasksList.removeWhere((item) => item.id == task.id);
     notifyListeners();
   }
 }
