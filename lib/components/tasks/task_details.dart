@@ -78,7 +78,7 @@ class TaskDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       constraints: const BoxConstraints(),
                       icon: const Icon(
                         Icons.delete,
