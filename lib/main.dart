@@ -8,7 +8,7 @@ import 'package:todo_list/screens/one_task.dart';
 
 Future<void> main() async {
   var tasksCollection = TasksCollection();
-  await tasksCollection.getTaskFromAPI();
+  await tasksCollection.getTasksDatasFromAPI();
 
   runApp(ChangeNotifierProvider(
     create: (context) => TasksCollection(),

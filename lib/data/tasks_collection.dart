@@ -8,17 +8,18 @@ import 'package:dio/dio.dart';
 class TasksCollection extends ChangeNotifier {
   List<Task> _tasksList = tasks;
 
-  Future getTaskFromAPI() async {
+  Future getTasksDatasFromAPI() async {
     var response = await Dio().get('https://jsonplaceholder.typicode.com/todos',
         options: Options(headers: {
           Headers.contentTypeHeader: 'application/json',
           Headers.acceptHeader: 'application/json'
         }));
-    List task = response.data;
-    _tasksList.addAll(task.map((i) => Task.fromJson(i)).toList());
-    // _tasksList = task.map((i) => Task.fromJson(i)).toList();
-    notifyListeners();
-    return _tasksList;
+
+    if (response.statusCode == 200) {
+      List data = response.data;
+      _tasksList.addAll(data.map((i) => Task.fromJson(i)).toList());
+      notifyListeners();
+    }
   }
 
   List<Task> getAllTAsks() {

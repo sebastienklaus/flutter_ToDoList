@@ -25,9 +25,6 @@ class _AllTasksState extends State<AllTasks> {
   @override
   void initState() {
     super.initState();
-    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-    //   Provider.of<TasksCollection>(context, listen: false).getTaskFromAPI();
-    // });
   }
 
   @override
@@ -91,7 +88,8 @@ class _AllTasksState extends State<AllTasks> {
                       setState(() {
                         //on appelle la source de données du Consumer (ou Provider plutôt)
                         //ainsi que sa méthode deleteTask()
-                        tasksCollection.deleteTask(selectedTask!);
+                        // tasksCollection.deleteTask(selectedTask!);
+                        // tasksCollection.deleteTaskAPI(selectedTask!.id);
                         //hide taskDetails
                         selectedTask = null;
                         //hide current snackbar
