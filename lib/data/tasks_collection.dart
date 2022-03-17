@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/widgets.dart';
 import 'package:todo_list/data/tasks.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:dio/dio.dart';
 
 class TasksCollection extends ChangeNotifier {
-  List<Task> _tasksList = tasks;
+  final List<Task> _tasksList = tasks;
 
   Future getTasksDatasFromAPI() async {
     var response = await Dio().get('https://jsonplaceholder.typicode.com/todos',
