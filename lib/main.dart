@@ -19,23 +19,57 @@ class TodoList extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Todo List',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: GoogleFonts.robotoTextTheme(
-          Theme.of(context).textTheme,
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-      initialRoute: AllTasks.route,
-      routes: {
-        OneTask.route: (context) => const OneTask(),
-        AllTasks.route: (context) => const AllTasks(
+    return Consumer<TasksCollection>(
+        builder: (context, tasksCollection, child) {
+      return FutureBuilder(
+          future: tasksCollection.getTaskFromAPI(),
+          builder: ((context, snapshot) {
+            return MaterialApp(
               title: 'Todo List',
-            ),
-        CreateTask.route: (context) => const CreateTask(),
-      },
-    );
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+                textTheme: GoogleFonts.robotoTextTheme(
+                  Theme.of(context).textTheme,
+                ),
+              ),
+              debugShowCheckedModeBanner: false,
+              initialRoute: AllTasks.route,
+              routes: {
+                OneTask.route: (context) => const OneTask(),
+                AllTasks.route: (context) => AllTasks(
+                      title: 'Todo List',
+                      listTasks: snapshot.data,
+                    ),
+                CreateTask.route: (context) => const CreateTask(),
+              },
+            );
+          }));
+    });
   }
 }
+
+
+
+// Consumer<TasksCollection>(
+//         builder: (context, tasksCollection, child) {
+//       var listsTasks = tasksCollection.getTaskFromAPI();
+//       return MaterialApp(
+//         title: 'Todo List',
+//         theme: ThemeData(
+//           primarySwatch: Colors.blue,
+//           textTheme: GoogleFonts.robotoTextTheme(
+//             Theme.of(context).textTheme,
+//           ),
+//         ),
+//         debugShowCheckedModeBanner: false,
+//         initialRoute: AllTasks.route,
+//         routes: {
+//           OneTask.route: (context) => const OneTask(),
+//           AllTasks.route: (context) => AllTasks(
+//                 title: 'Todo List',
+//                 listTasks: listsTasks,
+//               ),
+//           CreateTask.route: (context) => const CreateTask(),
+//         },
+//       );
+//     });
