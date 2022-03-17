@@ -22,6 +22,17 @@ class TasksCollection extends ChangeNotifier {
     }
   }
 
+  Future delTaskAPI(int id) async {
+    var response = await Dio()
+        .delete("https://jsonplaceholder.typicode.com/todos/${id.toString()}",
+            options: Options(headers: {
+              Headers.contentTypeHeader: 'application/json',
+              Headers.acceptHeader: 'application/json'
+            }));
+
+    return response.statusCode == 200;
+  }
+
   List<Task> getAllTAsks() {
     return _tasksList;
   }

@@ -89,15 +89,27 @@ class _AllTasksState extends State<AllTasks> {
                         //on appelle la source de données du Consumer (ou Provider plutôt)
                         //ainsi que sa méthode deleteTask()
                         // tasksCollection.deleteTask(selectedTask!);
-                        // tasksCollection.deleteTaskAPI(selectedTask!.id);
+                        String msg = "";
+
+                        tasksCollection
+                            .delTaskAPI(selectedTask!.id)
+                            .then((value) {
+                          if (value == true) {
+                            //Success delete from api
+                            msg = "Tâche supprimé !";
+                          } else {
+                            //Api response !=200
+                            msg =
+                                "Opps! Une erreur est survenue, réessayer à nouveau";
+                          }
+                          //hide current snackbar
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          //display snackBar of success
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(snackBarMessage().success(msg));
+                        });
                         //hide taskDetails
                         selectedTask = null;
-                        //hide current snackbar
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        //display snackBar of success
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            snackBarMessage()
-                                .success('Cette tâche à bien été supprimé'));
                       });
                     })
                 : Container(), //container when we have nothing to display !
