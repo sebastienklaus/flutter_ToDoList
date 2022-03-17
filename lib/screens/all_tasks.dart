@@ -9,11 +9,10 @@ import 'package:todo_list/screens/create_task.dart';
 import 'package:todo_list/tools/showSnackBar.dart';
 
 class AllTasks extends StatefulWidget {
-  const AllTasks({Key? key, required this.title, required this.listTasks})
+  const AllTasks({Key? key, required this.title})
       : super(key: key); //constrcuteur
 
   final String title;
-  final listTasks;
   static String get route => '/all_tasks';
 
   @override

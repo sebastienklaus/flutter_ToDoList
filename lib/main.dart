@@ -6,7 +6,10 @@ import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/screens/create_task.dart';
 import 'package:todo_list/screens/one_task.dart';
 
-void main() {
+Future<void> main() async {
+  var tasksCollection = TasksCollection();
+  await tasksCollection.getTaskFromAPI();
+
   runApp(ChangeNotifierProvider(
     create: (context) => TasksCollection(),
     child: const TodoList(),
@@ -16,60 +19,25 @@ void main() {
 class TodoList extends StatelessWidget {
   const TodoList({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Consumer<TasksCollection>(
-        builder: (context, tasksCollection, child) {
-      return FutureBuilder(
-          future: tasksCollection.getTaskFromAPI(),
-          builder: ((context, snapshot) {
-            return MaterialApp(
+    return MaterialApp(
+      title: 'Todo List',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: GoogleFonts.robotoTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: AllTasks.route,
+      routes: {
+        OneTask.route: (context) => const OneTask(),
+        AllTasks.route: (context) => const AllTasks(
               title: 'Todo List',
-              theme: ThemeData(
-                primarySwatch: Colors.blue,
-                textTheme: GoogleFonts.robotoTextTheme(
-                  Theme.of(context).textTheme,
-                ),
-              ),
-              debugShowCheckedModeBanner: false,
-              initialRoute: AllTasks.route,
-              routes: {
-                OneTask.route: (context) => const OneTask(),
-                AllTasks.route: (context) => AllTasks(
-                      title: 'Todo List',
-                      listTasks: snapshot.data,
-                    ),
-                CreateTask.route: (context) => const CreateTask(),
-              },
-            );
-          }));
-    });
+            ),
+        CreateTask.route: (context) => const CreateTask(),
+      },
+    );
   }
 }
-
-
-
-// Consumer<TasksCollection>(
-//         builder: (context, tasksCollection, child) {
-//       var listsTasks = tasksCollection.getTaskFromAPI();
-//       return MaterialApp(
-//         title: 'Todo List',
-//         theme: ThemeData(
-//           primarySwatch: Colors.blue,
-//           textTheme: GoogleFonts.robotoTextTheme(
-//             Theme.of(context).textTheme,
-//           ),
-//         ),
-//         debugShowCheckedModeBanner: false,
-//         initialRoute: AllTasks.route,
-//         routes: {
-//           OneTask.route: (context) => const OneTask(),
-//           AllTasks.route: (context) => AllTasks(
-//                 title: 'Todo List',
-//                 listTasks: listsTasks,
-//               ),
-//           CreateTask.route: (context) => const CreateTask(),
-//         },
-//       );
-//     });
