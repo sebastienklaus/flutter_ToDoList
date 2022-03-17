@@ -14,10 +14,11 @@ Welcome to my repo of the Todo List app developp with the [Flutter framework](ht
 
 ## The Flutter aspects addressed
 
-There is many aspects of Flutter addressed in this project, i'm gonna list them : 
+There is many aspects of Flutter addressed in this project : 
 - Stateless/Stateful widgets
-- Refactoring widgets
+- Design patterns : Refactoring, Observer
 - Classes
+- Route system
 - Communication parent-child (in both ways)
-- Provider & Consumer
-- Communication with REST API
+- Provider (Consumer, Listeners)
+- Communication with API REST 
