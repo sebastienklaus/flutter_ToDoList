@@ -9,10 +9,11 @@ import 'package:todo_list/screens/create_task.dart';
 import 'package:todo_list/tools/showSnackBar.dart';
 
 class AllTasks extends StatefulWidget {
-  const AllTasks({Key? key, required this.title})
+  const AllTasks({Key? key, required this.title, required this.listTasks})
       : super(key: key); //constrcuteur
 
   final String title;
+  final listTasks;
   static String get route => '/all_tasks';
 
   @override
@@ -25,9 +26,9 @@ class _AllTasksState extends State<AllTasks> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-      Provider.of<TasksCollection>(context, listen: false).getTaskFromAPI();
-    });
+    // WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    //   Provider.of<TasksCollection>(context, listen: false).getTaskFromAPI();
+    // });
   }
 
   @override
