@@ -5,6 +5,7 @@ Welcome to my repo of the Todo List app developp with the [Flutter framework](ht
 ## Summary
 - [Todo List app structure](#todo-list-app-structure)
 - [The Flutter aspects addressed](#the-flutter-aspects-addressed)
+- [Issues & Solutions](#issues--solutions)
 
 ## Todo List app structure
 
@@ -22,3 +23,7 @@ There is many aspects of Flutter addressed in this project :
 - Communication parent-child (in both ways)
 - Provider (Consumer, Listeners)
 - Communication with API REST 
+
+## Issues & Solutions
+
+In this project, I encountered several major/minors issues, some about new discoveries (some issues are just because of tiredness :sleeping:) 
