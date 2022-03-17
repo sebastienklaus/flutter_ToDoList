@@ -26,4 +26,7 @@ There is many aspects of Flutter addressed in this project :
 
 ## Issues & Solutions
 
-In this project, I encountered several major/minors issues, some about new discoveries (some issues are just because of tiredness :sleeping:) 
+In this project, I encountered several major/minors issues, some about new discoveries (some issues are just because of tiredness :sleeping:) :
+- Provider structure: [Issue solved](https://docs.flutter.dev/development/data-and-backend/state-mgmt/simple#changenotifier)
+- Sort by completed attribute : [Issue solved](https://stackoverflow.com/questions/61881850/sort-list-based-on-boolean#answers-header)
+- decode the JSON datas from API : [Issue solved](https://stackoverflow.com/questions/55666787/how-to-fix-type-errors-when-parsing-json-in-flutter#answers-header)
