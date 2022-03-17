@@ -26,10 +26,9 @@ class _TaskFormState extends State<TaskForm> {
   void initState() {
     super.initState();
     if (widget.taskToUpdate != null) {
+      // * si on reçoit une task (par exemple depuis One_Task())
       taskNameController =
           TextEditingController(text: widget.taskToUpdate!.content);
-      // taskDescriptionController =
-      //     TextEditingController(text: widget.taskToUpdate!.description);
       checkedValue = widget.taskToUpdate!.completed;
     }
   }
@@ -78,30 +77,6 @@ class _TaskFormState extends State<TaskForm> {
                             ),
                           ],
                         ),
-                        // TextFormField(
-                        //   controller: taskDescriptionController,
-                        //   // The validator receives the text that the user has entered.
-                        //   decoration: InputDecoration(
-                        //     labelText: 'Description',
-                        //     //border when input is enable
-                        //     enabledBorder: const OutlineInputBorder(
-                        //       borderSide: BorderSide(color: Colors.grey),
-                        //     ),
-                        //     //border when user clicked on it
-                        //     focusedBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(
-                        //             color:
-                        //                 Theme.of(context).colorScheme.primary)),
-                        //   ),
-                        //   minLines: 1,
-                        //   maxLines: 10,
-                        //   validator: (value) {
-                        //     if (value == null || value.isEmpty) {
-                        //       return 'Veuillez insérer une description valide.';
-                        //     }
-                        //     return null;
-                        //   },
-                        // ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: ElevatedButton(
@@ -174,48 +149,6 @@ class _TaskFormState extends State<TaskForm> {
                         const SizedBox(
                           height: 30,
                         ),
-                        // Expanded(
-                        //   child: TextFormField(
-                        //     controller: taskDescriptionController,
-                        //     // The validator receives the text that the user has entered.
-                        //     decoration: InputDecoration(
-                        //       filled: true,
-                        //       fillColor: Colors.white60,
-                        //       alignLabelWithHint: true,
-                        //       labelStyle: const TextStyle(
-                        //           color: Colors.black87,
-                        //           fontWeight: FontWeight.bold),
-                        //       labelText: 'Description',
-                        //       focusedErrorBorder: const OutlineInputBorder(
-                        //         borderSide: BorderSide(color: Colors.red),
-                        //       ),
-                        //       //border when input is enable
-                        //       enabledBorder: const OutlineInputBorder(
-                        //         borderSide:
-                        //             BorderSide(color: Colors.grey, width: 0.2),
-                        //       ),
-                        //       errorBorder: const OutlineInputBorder(
-                        //         borderSide: BorderSide(color: Colors.red),
-                        //       ),
-                        //       //border when user clicked on it
-                        //       focusedBorder: OutlineInputBorder(
-                        //           borderSide: BorderSide(
-                        //               color: Theme.of(context)
-                        //                   .colorScheme
-                        //                   .primary)),
-                        //     ),
-                        //     maxLines: null,
-                        //     expands: true,
-                        //     textAlignVertical: TextAlignVertical.top,
-
-                        //     validator: (value) {
-                        //       if (value == null || value.isEmpty) {
-                        //         return 'Veuillez insérer une description valide.';
-                        //       }
-                        //       return null;
-                        //     },
-                        //   ),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: ElevatedButton(
