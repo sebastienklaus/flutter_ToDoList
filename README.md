@@ -22,7 +22,7 @@ There is many aspects of Flutter addressed in this project :
 - Route system
 - Communication parent-child (in both ways)
 - Provider (Consumer, Listeners)
-- Communication with API REST 
+- Communication with [API REST](https://jsonplaceholder.typicode.com/todos)
 
 ## Issues & Solutions
 
