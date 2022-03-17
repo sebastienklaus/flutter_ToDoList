@@ -16,7 +16,7 @@ class TasksCollection extends ChangeNotifier {
         }));
     List task = response.data;
     _tasksList.addAll(task.map((i) => Task.fromJson(i)).toList());
-    _tasksList = task.map((i) => Task.fromJson(i)).toList();
+    // _tasksList = task.map((i) => Task.fromJson(i)).toList();
     notifyListeners();
     return _tasksList;
   }
