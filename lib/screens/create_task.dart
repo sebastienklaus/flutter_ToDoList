@@ -20,19 +20,6 @@ class _CreateTaskState extends State<CreateTask> {
         appBar: AppBar(
           title: const Text('Créer une nouvelle tâche'),
         ),
-        body: Consumer<TasksCollection>(
-          builder: (context, tasksCollection, child) {
-            return TaskForm(
-              onChangeTask: (name, description, complete, date) {
-                setState(() {
-                  int id = tasksCollection.lengthListTasks();
-                  Task task = Task(id, name, complete, date);
-                  // Task task = Task(id, name, description, complete, date);
-                  tasksCollection.createTask(task);
-                });
-              },
-            );
-          },
-        ));
+        body: const TaskForm());
   }
 }

@@ -22,16 +22,6 @@ class _OneTaskState extends State<OneTask> {
         appBar: AppBar(
           title: Text('Modifier la tâche "${task!.content}"'),
         ),
-        body: Consumer<TasksCollection>(
-            builder: (context, tasksCollection, child) {
-          return TaskForm(
-            taskToUpdate: task,
-            onChangeTask: (newTask) {
-              setState(() {
-                tasksCollection.updateTask(newTask);
-              });
-            },
-          );
-        }));
+        body: TaskForm(taskToUpdate: task));
   }
 }
