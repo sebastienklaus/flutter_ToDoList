@@ -9,10 +9,9 @@ class Task {
   // Task(this.id, this.content, this.description, this.completed, this.createdAt,
   //     {Key? key});
 
-  Task.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        content = json['title'],
-        completed = json['completed'];
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(json['id'], json['title'], json['completed'], DateTime.now());
+  }
 
   Map<String, dynamic> toJson() => {
         'id': id,
