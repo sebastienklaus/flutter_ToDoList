@@ -1,21 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/widgets.dart';
 import 'package:todo_list/data/tasks.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:dio/dio.dart';
 
 class TasksCollection extends ChangeNotifier {
-  final List<Task> _tasksList = tasks;
+  List<Task> _tasksList = tasks;
 
   Future getTaskFromAPI() async {
-    Response response = await Dio().get(
-      'https://jsonplaceholder.typicode.com/todos',
-    );
-    // return response.data;
-    for (var item in response.data) {
-      _tasksList.add(
-          Task(item['id'], item['title'], item['completed'], DateTime.now()));
-    }
+    var response = await Dio().get('https://jsonplaceholder.typicode.com/todos',
+        options: Options(headers: {
+          Headers.contentTypeHeader: 'application/json',
+          Headers.acceptHeader: 'application/json'
+        }));
+    List task = response.data;
+    _tasksList.addAll(task.map((i) => Task.fromJson(i)).toList());
+    print(_tasksList);
     notifyListeners();
+    return _tasksList;
   }
 
   List<Task> getAllTAsks() {
@@ -23,7 +26,8 @@ class TasksCollection extends ChangeNotifier {
   }
 
   void sortByName() {
-    _tasksList.sort(((a, b) => a.content.compareTo(b.content)));
+    _tasksList.sort(
+        ((a, b) => a.content.toLowerCase().compareTo(b.content.toLowerCase())));
     notifyListeners();
   }
 
