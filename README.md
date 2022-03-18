@@ -1,5 +1,7 @@
 # Todo List app in Flutter (february/april 2022)
 
+Made by Sébastien Klaus - LP CIASIE1 2021-2022
+
 Welcome to my repo of the Todo List app developp with the [Flutter framework](https://flutter.dev/)
 
 ## Summary
