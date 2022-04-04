@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
@@ -19,8 +20,10 @@ class _TaskFormState extends State<TaskForm> {
 
   // * controller(s) about the input(s)
   TextEditingController taskNameController = TextEditingController();
+  TextEditingController dateExpiredController = TextEditingController();
   // * check value about completed attribute
   late bool checkedValue;
+  DateTime? date = DateTime(1900);
 
   @override
   void initState() {
@@ -44,58 +47,108 @@ class _TaskFormState extends State<TaskForm> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        widget.taskToUpdate != null
-                            ? Checkbox(
-                                value: checkedValue,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    checkedValue = newValue!;
-                                  });
-                                },
-                                shape: const CircleBorder(
-                                    side: BorderSide(width: 2)),
-                              )
-                            : Container(),
-                        Flexible(
-                          child: TextFormField(
-                            controller: taskNameController,
-                            // The validator receives the text that the user has entered.
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white60,
-                              alignLabelWithHint: true,
-                              labelStyle: const TextStyle(
-                                  color: Colors.black87,
-                                  fontWeight: FontWeight.bold),
-                              labelText: 'Nom',
-                              //border when input is enable
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey, width: 0.2),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              widget.taskToUpdate != null
+                                  ? Checkbox(
+                                      value: checkedValue,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          checkedValue = newValue!;
+                                        });
+                                      },
+                                      shape: const CircleBorder(
+                                          side: BorderSide(width: 2)),
+                                    )
+                                  : Container(),
+                              Flexible(
+                                child: TextFormField(
+                                  controller: taskNameController,
+                                  // The validator receives the text that the user has entered.
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white60,
+                                    alignLabelWithHint: true,
+                                    labelStyle: const TextStyle(
+                                        color: Colors.black87,
+                                        fontWeight: FontWeight.bold),
+                                    labelText: 'Nom',
+                                    //border when input is enable
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Colors.grey, width: 0.2),
+                                    ),
+                                    focusedErrorBorder:
+                                        const OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red),
+                                    ),
+                                    errorBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red),
+                                    ),
+                                    //border when user clicked on it
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary)),
+                                  ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Veuillez insérer un nom de tâche valide.';
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
-                              focusedErrorBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
-                              ),
-                              errorBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
-                              ),
-                              //border when user clicked on it
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary)),
+                            ]),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        TextFormField(
+                          controller: dateExpiredController,
+                          onTap: () async {
+                            date = await showDatePicker(
+                                locale: const Locale("fr", "FR"),
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime(2100));
+                            dateExpiredController.text =
+                                DateFormat('dd-MM-yyyy').format(date!);
+                          },
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white60,
+                            alignLabelWithHint: true,
+                            labelStyle: const TextStyle(color: Colors.black87),
+                            labelText: 'Date de fin',
+                            //border when input is enable
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 0.2),
                             ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Veuillez insérer un nom de tâche valide.';
-                              }
-                              return null;
-                            },
+                            focusedErrorBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            errorBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            //border when user clicked on it
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary)),
                           ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Veuillez insérer un nom de tâche valide.';
+                            }
+                            return null;
+                          },
                         ),
                       ],
                     ),
@@ -109,10 +162,10 @@ class _TaskFormState extends State<TaskForm> {
                               if (widget.taskToUpdate != null) {
                                 if (_formKey.currentState!.validate()) {
                                   tasksCollection.updateTask(Task(
-                                      widget.taskToUpdate!.id,
-                                      taskNameController.text,
-                                      checkedValue,
-                                      DateTime.now()));
+                                      id: widget.taskToUpdate!.id,
+                                      content: taskNameController.text,
+                                      completed: checkedValue,
+                                      createdAt: DateTime.now()));
                                   Navigator.pop(context);
                                   //hide current snackbar
                                   ScaffoldMessenger.of(context)
@@ -132,10 +185,11 @@ class _TaskFormState extends State<TaskForm> {
                                 if (_formKey.currentState!.validate()) {
                                   int id = tasksCollection.lengthListTasks();
                                   tasksCollection.createTask(Task(
-                                      id,
-                                      taskNameController.text,
-                                      false,
-                                      DateTime.now()));
+                                      id: id,
+                                      content: taskNameController.text,
+                                      completed: false,
+                                      createdAt: DateTime.now(),
+                                      expiredAt: date));
                                   Navigator.pop(context);
                                   //hide current snackbar
                                   ScaffoldMessenger.of(context)

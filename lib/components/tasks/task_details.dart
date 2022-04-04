@@ -23,8 +23,10 @@ class TaskDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     initializeDateFormatting(); //to change the dte US into FR
-    var newDate =
+    var createdDate =
         DateFormat.yMMMMd('fr_FR').format(task!.createdAt!); //date formating
+    var expiredDate =
+        DateFormat.yMMMMd('fr_FR').format(task!.expiredAt!); //date formating
 
     return Container(
       decoration: BoxDecoration(
@@ -64,6 +66,11 @@ class TaskDetails extends StatelessWidget {
             style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
           ),
+          Text(
+            DateFormat('dd-MM-yyyy').format(task!.expiredAt!),
+            style: const TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+          ),
           // Text(task!.description),
           const SizedBox(
             height: 20,
@@ -74,7 +81,8 @@ class TaskDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Créée le $newDate'),
+              Text('Créée le $createdDate'),
+              Text('Créée le $expiredDate'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

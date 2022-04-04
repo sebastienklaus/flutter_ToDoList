@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/screens/create_task.dart';
 import 'package:todo_list/screens/one_task.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   var tasksCollection = TasksCollection();
@@ -38,6 +39,8 @@ class TodoList extends StatelessWidget {
             ),
         CreateTask.route: (context) => const CreateTask(),
       },
+      localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+      supportedLocales: const [Locale('en'), Locale('fr')],
     );
   }
 }

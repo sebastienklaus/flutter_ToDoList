@@ -4,13 +4,23 @@ class Task {
   // String description;
   bool completed; //bool if the task is complete or not
   DateTime? createdAt; //time of creation of task
+  DateTime? expiredAt; //expired time of task
 
-  Task(this.id, this.content, this.completed, this.createdAt);
-  // Task(this.id, this.content, this.description, this.completed, this.createdAt,
-  //     {Key? key});
+  Task(
+      {required this.id,
+      required this.content,
+      required this.completed,
+      this.createdAt,
+      this.expiredAt});
 
   factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(json['id'], json['title'], json['completed'], DateTime.now());
+    return Task(
+      id: json['id'],
+      content: json['title'],
+      completed: json['completed'],
+      createdAt: DateTime.now(),
+      expiredAt: DateTime.now(),
+    );
   }
 
   Map<String, dynamic> toJson() => {
