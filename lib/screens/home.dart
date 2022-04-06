@@ -138,13 +138,13 @@ class HomePage extends StatelessWidget {
                     ),
                   ]),
             ),
-            Text(
-              '$wave Made by Sébastien Klaus | 2022 $wave',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
-            )
           ],
+        ),
+      ),
+      bottomSheet: Text(
+        '$wave Made by Sébastien Klaus | 2022 $wave',
+        style: TextStyle(
+          color: Colors.grey[600],
         ),
       ),
       // bottomNavigationBar: BottomNavigationBar(
