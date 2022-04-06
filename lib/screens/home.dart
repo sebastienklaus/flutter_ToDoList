@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo_list/screens/all_tasks.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_emoji/flutter_emoji.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,6 +13,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     int tasksCompleted = context.read<TasksCollection>().totalTasksComplete();
     int total = context.read<TasksCollection>().lengthListTasks();
+
+    var parser = EmojiParser();
+    String wave = parser.get('wave').code;
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,7 +51,7 @@ class HomePage extends StatelessWidget {
                       height: 20,
                     ),
                     const Text(
-                      'Bienvenue Sébastien Klaus',
+                      'Bienvenue, Sébastien Klaus',
                       style: TextStyle(color: Colors.white, fontSize: 25.0),
                       maxLines: 2,
                     ),
@@ -127,10 +132,19 @@ class HomePage extends StatelessWidget {
                       ),
                       Text(
                         '$tasksCompleted / $total',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColor),
                         maxLines: 2,
                       ),
                     ]),
+              ),
+              Text(
+                '$wave Made by Sébastien Klaus | 2022 $wave',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
               )
             ],
           ),
