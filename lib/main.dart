@@ -5,8 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/screens/create_task.dart';
 import 'package:todo_list/screens/one_task.dart';
+import 'package:todo_list/screens/home.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   var tasksCollection = TasksCollection();
   await tasksCollection.getTasksDatasFromAPI();
 
@@ -30,14 +34,17 @@ class TodoList extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: AllTasks.route,
+      initialRoute: HomePage.route,
       routes: {
         OneTask.route: (context) => const OneTask(),
         AllTasks.route: (context) => const AllTasks(
               title: 'Todo List',
             ),
         CreateTask.route: (context) => const CreateTask(),
+        HomePage.route: ((context) => const HomePage())
       },
+      localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+      supportedLocales: const [Locale('en'), Locale('fr')],
     );
   }
 }

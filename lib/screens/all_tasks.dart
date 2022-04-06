@@ -5,6 +5,7 @@ import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
 import 'package:todo_list/components/tasks/task_master.dart';
 import 'package:todo_list/screens/create_task.dart';
+import 'package:todo_list/screens/home.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
 
@@ -32,46 +33,55 @@ class _AllTasksState extends State<AllTasks> {
     return Consumer<TasksCollection>(
         builder: ((context, tasksCollection, child) {
       return Scaffold(
-        appBar: AppBar(title: Text(widget.title), actions: [
-          PopupMenuButton(
-              onSelected: (result) {
-                if (result == 1) {
-                  tasksCollection.sortByName();
-                }
-                if (result == 2) {
-                  tasksCollection.sortByStatus();
-                }
-              },
-              itemBuilder: (context) => [
-                    PopupMenuItem(
-                      value: 1,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.sort_by_alpha_outlined,
-                            color: Colors.black,
-                          ),
-                          Text(' Tri par ordre alphabétique'),
-                        ],
+        appBar: AppBar(
+          title: Text(widget.title),
+          leading: IconButton(
+            icon: const Icon(Icons.home),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, HomePage.route);
+            },
+          ),
+          actions: [
+            PopupMenuButton(
+                onSelected: (result) {
+                  if (result == 1) {
+                    tasksCollection.sortByName();
+                  }
+                  if (result == 2) {
+                    tasksCollection.sortByStatus();
+                  }
+                },
+                itemBuilder: (context) => [
+                      PopupMenuItem(
+                        value: 1,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(
+                              Icons.sort_by_alpha_outlined,
+                              color: Colors.black,
+                            ),
+                            Text(' Tri par ordre alphabétique'),
+                          ],
+                        ),
                       ),
-                    ),
-                    PopupMenuItem(
-                      // enabled: false,
-                      value: 2,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.sort,
-                            color: Colors.black,
-                          ),
-                          Text(' Tri par statut'),
-                        ],
+                      PopupMenuItem(
+                        // enabled: false,
+                        value: 2,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(
+                              Icons.sort,
+                              color: Colors.black,
+                            ),
+                            Text(' Tri par statut'),
+                          ],
+                        ),
                       ),
-                    ),
-                  ])
-        ]),
+                    ])
+          ],
+        ),
         body: Column(
           children: <Widget>[
             (selectedTask != null)
