@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/data/tasks_collection.dart';
 import 'package:todo_list/models/task.dart';
+import 'package:provider/provider.dart';
 
 import 'package:todo_list/tools/showSnackBar.dart';
 
@@ -46,7 +47,7 @@ class TaskPreview extends StatelessWidget {
                 task.completed == true
                     ? task.completed = false
                     : task.completed = true;
-                TasksCollection().updateTask(task);
+                context.read<TasksCollection>().updateTask(task);
                 //hide current snackbar
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context)
