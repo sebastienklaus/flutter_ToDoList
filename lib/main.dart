@@ -44,7 +44,7 @@ class TodoList extends StatelessWidget {
         HomePage.route: ((context) => const HomePage())
       },
       localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
-      supportedLocales: const [Locale('en'), Locale('fr')],
+      // supportedLocales: const [Locale('en'), Locale('fr')],
     );
   }
 }

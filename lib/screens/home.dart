@@ -141,10 +141,14 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: Text(
-        '$wave Made by Sébastien Klaus | 2022 $wave',
-        style: TextStyle(
-          color: Colors.grey[600],
+      bottomSheet: Container(
+        width: double.infinity,
+        child: Text(
+          '$wave Made by Sébastien Klaus | 2022 $wave',
+          style: TextStyle(
+            color: Colors.grey[600],
+          ),
+          textAlign: TextAlign.center,
         ),
       ),
       // bottomNavigationBar: BottomNavigationBar(
