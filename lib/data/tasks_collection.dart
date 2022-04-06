@@ -54,7 +54,7 @@ class TasksCollection extends ChangeNotifier {
   }
 
   int totalTasksComplete() {
-    Iterable<Task> list = _tasksList.where((task) => task.completed == false);
+    Iterable<Task> list = _tasksList.where((task) => task.completed == true);
     int total = list.length;
     return total;
   }
